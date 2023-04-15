@@ -90,6 +90,12 @@ class MySQLHandler implements DbHandler {
                 else
                     $sql2 .= " '" . $value . "' ,";
             }
+            if ( isset($_FILES['image_path']['name']) && !empty($_FILES['image_path']['name']) ){
+                $sql1 .= "`image_path` ,";
+                $valueImagePath=$_FILES['image_path']['name'];
+                $sql2 .=" '" . $valueImagePath . "' ,";
+                move_uploaded_file($_FILES['image_path']['tmp_name'], "images/". $_FILES['image_path']['name']); 
+            }
             $sql1 = $sql1 . ") ";
             $sql2 = $sql2 . ") ";
             $sql1 = str_replace(",)", ")", $sql1);
@@ -98,10 +104,10 @@ class MySQLHandler implements DbHandler {
 
         
             if (mysqli_query($this->_db_handler, $sql)) {
-                $this->disconnect();
+               // $this->disconnect();
                 return true;
             } else {
-                $this->disconnect();
+                //$this->disconnect();
                 return false;
             }
         }
