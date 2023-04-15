@@ -34,8 +34,22 @@ if(isset($_POST['action']) && $_POST['action'] === "update") {
 }
 
 if(isset($_GET['group_search'])){
-  $arrOfProducts = $db->search('name' , $_GET['group_search'] );
+  //$arrOfProducts = $db->search('name' , $_GET['group_search'] );
+  $arrOfProducts;
+  $handler = mysqli_connect(__HOST__, __USER__, __PASS__, __DB__);
+  $table = "groups";
+  $column1 = "name";
+  $column_value1 = $_GET['group_search'];
+  $column2 = "description";
+  $column_value2 = $_GET['group_search'];
+  $sql = "select * from `$table` where `$column1` like  '%" . $column_value1 . "%' OR `$column2` like  '%" . $column_value2 . "%' ";
+  $result = $handler -> query($sql);
+  while($row = $result -> fetch_array(MYSQLI_ASSOC)) {
+    $arrOfProducts[] = $row;
+  }
   $groups = $arrOfProducts;
+
+  $handler -> close();
 }
 if(isset($_GET['group_delete'])){
   $allGroups=$db->get_all_records();
