@@ -16,27 +16,45 @@
       crossorigin="anonymous"
       defer
     ></script>
-    <script src="/Articles_project/PHP-Articles-Website/Utiles/script.js" defer></script>
     <title>Users</title>
   </head>
   <body>
     <div class="container">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1"
-            ><i class="fa fa-search" aria-hidden="true"></i
-          ></span>
-        </div>
-        <!-- //search -->
-        <input
-          type="text"
-          class="form-control groupSearchInput"
-          placeholder="Search by name or description"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
-      </div>
-      <!-- <button type="button" class="btn btn-primary editBtn " id="btn">Create</button> -->
+      <div class="row">
+      <form action="index.php" method="POST" class="col-4">
+          <div class=" form-group mt-4  ">
+              <input
+                  type="text"
+                  class="border border-1 border-primary rounded pl-1"
+                  id="exampleInputText1"
+                  aria-describedby="emailHelp"
+                  placeholder="Search by name"
+                  name="search_name"
+              />
+              <button class="bg-primary border border-1 border-primary rounded text-light" value="search" name="action">
+                   Search
+              </button>
+          </div>
+      </form>
+
+      <form action="index.php" method="POST" class="col-4">
+            <div class=" form-group mt-4  ">
+                 <select name="selected_group" class=" border border-1 border-primary rounded text-secondary pl-1">
+                    <?php 
+                         $groups = $db_groups->get_all_records_paginated(array());
+                         echo '<option>Filter by group name</option>';
+                         foreach ($groups as $group){
+                         echo "<option value=".$group["id"].">".$group["name"]."</option>"; 
+                        }
+                    ?>
+                  </select>
+                  <button class="bg-primary border border-1 border-primary rounded text-light" value="filter" name="action">
+                       filter
+                  </button>
+             </div>
+      </form>
+
+      </div> 
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -52,7 +70,16 @@
         <tbody class="groupTableBody">
 
         <?php
-          $users =$db_users->get_all_records_paginated(array());
+          if($search && !empty($search_name)){
+             $users=$db_users->search('name', $search_name);
+          }
+          elseif($search && $selected_group!=0){
+            $users=$db_users->search('group_id', $selected_group);
+          }
+           else{
+            $users =$db_users->get_all_records_paginated(array());
+         }
+      
           foreach($users as $user) {
             $group = $db_groups->get_record_by_id($user['group_id']);
             echo '
@@ -90,7 +117,7 @@
                echo '</div>';
          ?>
 
-</div>
+      </div>
       <form action="index.php" method="POST"  id="user_form">
 
       <div class="form-group">

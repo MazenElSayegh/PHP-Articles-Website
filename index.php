@@ -7,7 +7,11 @@
     $user_phone= '';
     $u_name = '';
     $user_group_id = 0;
+    $search_name ="";
+    $selected_group=0;
     $update= false;
+    $search= false;
+    
     $db_users = new MySQLHandler("users");
     if($db_users->connect()) {
    
@@ -22,7 +26,6 @@
                    $user_phone= $user[0]['mobile'];
                    $u_name = $user[0]['user_name'];
                    $user_group_id = $user[0]['group_id'];
-                //    var_dump($user[0]['id']);
                 }
                 else if(isset($_GET['delete'])) {
                     $id =(int) $_GET["delete"];
@@ -56,6 +59,14 @@
                   ];
                  $db_users->update($values,$id); 
 
+            }
+            elseif($_POST["action"]==="search"){
+                $search_name = $_POST['search_name'];
+                $search=true;
+            }
+            elseif($_POST["action"]==="filter"){
+                $selected_group = intval($_POST['selected_group']);
+                $search=true;
             }
            
         }
