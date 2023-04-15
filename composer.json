@@ -1,0 +1,13 @@
+{
+  "name": "omar/lec2",
+  "description": "lec2",
+  "license": "MIT",
+  "autoload": {
+    "classmap": [
+      "models"
+    ],
+    "files": [
+      "Utiles/config.php"
+    ]
+  }
+}

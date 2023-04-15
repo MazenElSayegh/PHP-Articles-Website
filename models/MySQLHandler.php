@@ -98,10 +98,10 @@ class MySQLHandler implements DbHandler {
 
         
             if (mysqli_query($this->_db_handler, $sql)) {
-                $this->disconnect();
+                // $this->disconnect();
                 return true;
             } else {
-                $this->disconnect();
+                // $this->disconnect();
                 return false;
             }
         }
@@ -146,7 +146,7 @@ class MySQLHandler implements DbHandler {
         if (mysqli_query($this->_db_handler, $sql)) {
             return true;
         } else {
-            $this->disconnect();
+            // $this->disconnect();
             return false;
         }
     }
