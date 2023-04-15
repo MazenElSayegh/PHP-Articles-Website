@@ -7,7 +7,7 @@
       "models"
     ],
     "files": [
-      "Utiles/config.php"
+      "config.php"
     ]
   }
 }
