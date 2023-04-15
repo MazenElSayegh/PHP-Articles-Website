@@ -15,7 +15,7 @@
             <?php echo $_GET['error']; ?>
         </div> 
     <?php } ?>
-    <form action="log.php" method="post">
+    <form action="controllers/login.php" method="post">
         <div class="mb-3">
             <label class="form-label">Username</label>
             <input type="text" class="form-control" name="uname" placeholder="username">
