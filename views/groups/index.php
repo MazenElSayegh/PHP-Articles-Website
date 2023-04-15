@@ -9,7 +9,11 @@ require_once("../../models/MySQLHandler.php");
 
 $db=new MySQLHandler("groups");
 
-
+$current_index=isset($_GET["group_current"]) && is_numeric($_GET["group_current"])?$_GET["group_current"]:0;
+$groups=$db->get_all_records_paginated(array(),$current_index);
+$allGroups;
+$next_index=$current_index + __RECORDS_PER_PAGE__ < 16?$current_index + __RECORDS_PER_PAGE__ :0;
+$previous_index=$current_index - __RECORDS_PER_PAGE__ >0?$current_index - __RECORDS_PER_PAGE__:12;
 
 if(isset($_POST['action']) && $_POST['action'] === "create") {
   $values = [
@@ -19,6 +23,29 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
   ];
   $db->save($values);
 }
+
+if(isset($_POST['action']) && $_POST['action'] === "update") {
+  $values = [
+    "name" => $_POST['name'],
+    "description" => $_POST['description'],
+    "icon" => $_POST['icon'],
+  ];
+  $db->update($values, $_POST['id']);
+}
+
+if(isset($_GET['group_search'])){
+  $arrOfProducts = $db->search('name' , $_GET['group_search'] );
+  $groups = $arrOfProducts;
+}
+if(isset($_GET['group_delete'])){
+  $allGroups=$db->get_all_records();
+  $db->delete($allGroups[$_GET['group_delete']]['id']);
+}
+
+if(isset($_GET['group_edit'])){
+  $allGroups=$db->get_all_records();
+}
+
 
 ?>
 
@@ -67,20 +94,12 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
   </head>
   <body>
     <div class="container">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1"
-            ><i class="fa fa-search" aria-hidden="true"></i
-          ></span>
-        </div>
-        <input
-          type="text"
-          class="form-control groupSearchInput"
-          placeholder="Search by name or description"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
-      </div>
+
+      <?php
+      echo "<div id=container><div id=formCont><form action=".$_SERVER['PHP_SELF']." method=GET>";
+      echo "<input type=search name=group_search placeholder=Product Name>";
+      echo "<button type=submit>Search</button></form></div>";?>
+
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -88,33 +107,37 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
             <th scope="col">Icon</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody class="groupTableBody">
 
         <?php
-          $allGroups = $db->get_all_records();
+          $index=$current_index;
 
-          foreach($allGroups as $group) {
-            echo '
-            <tr>
-              <th scope="row" class="groupID">' . $group['id'] . '</th>
-              <td class="groupIcon">' . '<i class="fa ' . $group['icon'] . '" aria-hidden="true"></i>' . '</td>
-              <td class="groupName">' . $group['name'] . '</td>
-              <td class="groupDescription">' . $group['description'] . '</td>
-              <td>
-                <button type="button" class="btn btn-primary editBtn">Edit</button>
-                <button type="button" class="btn btn-danger deleteBtn">Delete</button>
-              </td>
-            </tr>
-          ';
+
+          foreach($groups as $group){
+            echo "<tr><td>".$group["id"]."</td>";
+            echo "<td><i class='fa " .$group["icon"]. "'></i></td>";
+            echo "<td>".$group["name"]."</td>";
+            echo "<td>".$group["description"]."</td>";
+            echo "<td><a href='".$_SERVER["PHP_SELF"]."?group_edit=".$index."'>edit group</a></td>";
+            echo "<td><a href='".$_SERVER["PHP_SELF"]."?group_delete=".$index."'>delete group</a></td></tr>";
+            $index++;
         }
 
         ?>
         </tbody>
+        <a href=""></a>
       </table>
+      <?php
+      echo "<div id=btns>";
+      echo "<button type=button><a href='".$_SERVER["PHP_SELF"]."?group_current=".$previous_index."'>Previous</a></button>";
+      echo "<button type=button><a href='".$_SERVER["PHP_SELF"]."?group_current=".$next_index."'>Next</a></button></div>";
+      ?>
     </div>
+
 
     <div class="container">
       <form action="/projects/PHP-Articles-Website/views/groups/index.php" method="POST">
@@ -127,6 +150,7 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
             aria-describedby="emailHelp"
             placeholder="Enter Group Icon Class"
             name="id"
+            value = "<?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['id'] ?>"
             hidden
           />
         </div>
@@ -140,6 +164,7 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
             aria-describedby="emailHelp"
             placeholder="Enter Group Icon Class"
             name="icon"
+            value = "<?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['icon'] ?>"
             required
           />
         </div>
@@ -153,6 +178,7 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
             aria-describedby="emailHelp"
             placeholder="Enter Group Name"
             name="name"
+            value = "<?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['name'] ?>"
             required
           />
         </div>
@@ -165,7 +191,7 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
             rows="3"
             name="description"
             required
-          ></textarea>
+          ><?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['description'] ?></textarea>
         </div>
         <button class="btn btn-success" value="create" name="action">
           Create
