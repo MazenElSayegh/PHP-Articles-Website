@@ -61,7 +61,7 @@ class MySQLHandler implements DbHandler {
         return $this->get_results($sql);
     }
 
-    private function get_results($sql) {
+    public function get_results($sql) {
         $this->debug($sql);
         $_handler_results = mysqli_query($this->_db_handler, $sql);
         $_arr_results = array();
