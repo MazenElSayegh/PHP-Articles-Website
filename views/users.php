@@ -1,3 +1,10 @@
+<?php
+    $recordsNumber =($db_users->get_records_count());
+    $current_index = isset($_GET["next"]) && is_numeric($_GET["next"]) ? (int)$_GET["next"] : 0;
+    $next_index = (($current_index + __RECORDS_PER_PAGE__) < $recordsNumber[0]["count(*)"])? $current_index + __RECORDS_PER_PAGE__ : 0;
+    $prev_index = (($current_index -  __RECORDS_PER_PAGE__)>0)? ($current_index -  __RECORDS_PER_PAGE__) : 0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -77,7 +84,7 @@
             $users=$db_users->search('group_id', $selected_group);
           }
            else{
-            $users =$db_users->get_all_records_paginated(array());
+            $users =$db_users->get_all_records_paginated(array(),$current_index);
          }
       
           foreach($users as $user) {
@@ -102,8 +109,15 @@
         ?>
         </tbody>
       </table>
+      <div class="row">
+        <div class="col-5"></div>
+      <div class="data">
+            <a class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "index.php?next=".$prev_index  ?>" >Prev</a>
+            <a  class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "index.php?next=".$next_index  ?>" >Next</a>
+      </div>
+      </div>
     </div>
-
+    
     <div class="container">
       <div class="row">
       <?php 
@@ -118,7 +132,9 @@
          ?>
 
       </div>
-      <form action="index.php" method="POST"  id="user_form">
+
+
+      <form action="index.php" method="POST">
 
       <div class="form-group">
           <input

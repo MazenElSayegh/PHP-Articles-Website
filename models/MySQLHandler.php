@@ -51,6 +51,15 @@ class MySQLHandler implements DbHandler {
         return $this->get_results($sql);
     }
 
+    public function get_records_count() {
+        $table = $this->_table;
+        
+            $sql = "select count(*) from `$table`";
+        
+        return $this->get_results($sql);
+    }
+
+
     public function get_record_by_id($id) {
 
         $primary_key = $this->_primary_key;
