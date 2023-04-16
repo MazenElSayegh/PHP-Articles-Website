@@ -6,7 +6,7 @@
         "endroid/qr-code": "*"
     },
     "autoload": {
-
-        "files": ["config.php", "functions.php"]
+        "classmap": ["models"],
+        "files": ["config.php"]
     }  
 }
