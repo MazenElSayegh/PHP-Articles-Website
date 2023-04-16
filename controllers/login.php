@@ -20,10 +20,10 @@ else{
         $uname= validate($_POST['uname']);
         $pass=validate($_POST['password']);
         if(empty($uname)) {
-            header("Location: ../index.php?error=Username is required");
+            header("Location: ../?error=Username is required");
             exit();
         } elseif(empty($pass)) {
-            header("Location: ../index.php?error=Password is required");
+            header("Location: ../?error=Password is required");
             exit();
         } else {
             $users_db= new MySQLHandler('users');
@@ -41,16 +41,17 @@ else{
                 $_SESSION['email']=$user[0]['email'];
                 $_SESSION['mobile']=$user[0]['mobile'];
                 $_SESSION['group']=$group[0]['name'];
+                $_SESSION['subscription_date']=$user[0]['subscription_date'];
                 // var_dump($_SESSION);
                 header("Location: ../views/login/profile.php");
                 exit();
             } else {
-                header("Location: ../index.php?error=Incorrect username or password");
+                header("Location: ../?error=Incorrect username or password");
                 exit();
             }
         }
     } else {
-        header("Location: ../index.php");
+        header("Location: ../");
         exit();
     }
 }

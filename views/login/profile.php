@@ -23,6 +23,7 @@ if(isset($_SESSION)){
             <li class="list-group-item">Email: <?php echo $_SESSION['email']; ?></li>
             <li class="list-group-item">Mobile: <?php echo $_SESSION['mobile']; ?></li>
             <li class="list-group-item">Group: <?php echo $_SESSION['group']; ?></li>
+            <li class="list-group-item">Subscription date: <?php echo $_SESSION['subscription_date']; ?></li>
         </ul>
     </div>
     <a href="../../controllers/logout.php" class="btn btn-warning mt-3 border border-dark rounded-pill">Logout</a>
@@ -31,6 +32,6 @@ if(isset($_SESSION)){
 </body>
 </html>
 <?php }else{
-    header("Location: index.php");
+    header("Location: ../");
     exit();
 } ?>
