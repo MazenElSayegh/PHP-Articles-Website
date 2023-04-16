@@ -1,5 +1,5 @@
-<?php require('main/head.php') ?>
-<?php require('main/sidebar.php') ?>
+<?php require('../main/head.php') ?>
+<?php require('../main/sidebar.php') ?>
 
 
     <div class="content-wrapper">
@@ -26,6 +26,4 @@
 
 </div>
 
-
-
-<?php require('main/footer.php') ?>
+<?php require('../main/footer.php') ?>

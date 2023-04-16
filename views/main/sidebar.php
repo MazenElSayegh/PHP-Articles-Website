@@ -58,12 +58,18 @@
                                 <p>Articles</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="views/home/index.view.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
                         
                     </ul>
                 </li>
                
                 <li class="nav-item">
-                            <a href="/logout" class="nav-link">
+                            <a href="../../controllers/logout.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Log Out</p>
                             </a>
