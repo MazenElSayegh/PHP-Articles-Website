@@ -1,0 +1,13 @@
+{
+  "name": "tahoun/arricles",
+  "description": "lec2",
+  "license": "MIT",
+  "autoload": {
+    "classmap": [
+      "models"
+    ],
+    "files": [
+      "config.php"
+    ]
+  }
+}
