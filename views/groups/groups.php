@@ -1,68 +1,4 @@
-<?php
-require_once("./config.php");
-require_once("../../models/DbHandler.php");
-require_once("../../models/MySQLHandler.php");
-?>
-
-
-<?php
-
-$db=new MySQLHandler("groups");
-
-$current_index=isset($_GET["group_current"]) && is_numeric($_GET["group_current"])?$_GET["group_current"]:0;
-$groups=$db->get_all_records_paginated(array(),$current_index);
-$allGroups;
-$next_index=$current_index + __RECORDS_PER_PAGE__ < 16?$current_index + __RECORDS_PER_PAGE__ :0;
-$previous_index=$current_index - __RECORDS_PER_PAGE__ >0?$current_index - __RECORDS_PER_PAGE__:12;
-
-if(isset($_POST['action']) && $_POST['action'] === "create") {
-  $values = [
-    "name" => $_POST['name'],
-    "description" => $_POST['description'],
-    "icon" => $_POST['icon'],
-  ];
-  $db->save($values);
-}
-
-if(isset($_POST['action']) && $_POST['action'] === "update") {
-  $values = [
-    "name" => $_POST['name'],
-    "description" => $_POST['description'],
-    "icon" => $_POST['icon'],
-  ];
-  $db->update($values, $_POST['id']);
-}
-
-if(isset($_GET['group_search'])){
-  //$arrOfProducts = $db->search('name' , $_GET['group_search'] );
-  $arrOfProducts;
-  $handler = mysqli_connect(__HOST__, __USER__, __PASS__, __DB__);
-  $table = "groups";
-  $column1 = "name";
-  $column_value1 = $_GET['group_search'];
-  $column2 = "description";
-  $column_value2 = $_GET['group_search'];
-  $sql = "select * from `$table` where `$column1` like  '%" . $column_value1 . "%' OR `$column2` like  '%" . $column_value2 . "%' ";
-  $result = $handler -> query($sql);
-  while($row = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $arrOfProducts[] = $row;
-  }
-  $groups = $arrOfProducts;
-
-  $handler -> close();
-}
-if(isset($_GET['group_delete'])){
-  $allGroups=$db->get_all_records();
-  $db->delete($allGroups[$_GET['group_delete']]['id']);
-}
-
-if(isset($_GET['group_edit'])){
-  $allGroups=$db->get_all_records();
-}
-
-
-?>
-
+<?php require_once("../../controllers/groups.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -154,7 +90,7 @@ if(isset($_GET['group_edit'])){
 
 
     <div class="container">
-      <form action="/projects/PHP-Articles-Website/views/groups/index.php" method="POST">
+      <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST">
 
       <div class="form-group">
           <input
@@ -207,12 +143,16 @@ if(isset($_GET['group_edit'])){
             required
           ><?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['description'] ?></textarea>
         </div>
-        <button class="btn btn-success" value="create" name="action">
-          Create
-        </button>
-        <button class="btn btn-primary updateBtn" value="update" name="action">
-          Update
-        </button>
+
+        <?php
+        if (!isset($_GET['group_edit'])){
+        echo '<button class="btn btn-success" value="create" name="action">Create</button>';
+        }
+        else {
+        echo '<button class="btn btn-primary updateBtn" value="update" name="action">Update</button>';
+      }
+
+        ?>
       </form>
     </div>
   </body>
