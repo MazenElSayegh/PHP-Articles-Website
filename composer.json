@@ -1,13 +1,12 @@
 {
-  "name": "tahoun/arricles",
-  "description": "lec2",
-  "license": "MIT",
-  "autoload": {
-    "classmap": [
-      "models"
-    ],
-    "files": [
-      "config.php"
-    ]
-  }
+    "name" : "php/project",
+    "description":"Articles Website",
+    "license" : "MIT",
+    "require": {
+        "endroid/qr-code": "*"
+    },
+    "autoload": {
+        "classmap": ["models"],
+        "files": ["config.php"]
+    }  
 }
