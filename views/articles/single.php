@@ -17,7 +17,7 @@
     <div class="article-img">
     <?php
     $index=isset($_GET["article_id"])?$_GET["article_id"]:"";
-    $articles=$db->get_all_records();
+    $articles=$articles_table->get_all_records();
     echo "<div class='card d-inline-flex flex-column justify-content-around align-items-start m-5 p-5 min-vw-50'>";
       echo "<div class='card-body p-2 min-vw-70'>";
         echo "<img src=./images/".$articles[$index]["image_path"]." class='img-fluid w-10'></div>";
