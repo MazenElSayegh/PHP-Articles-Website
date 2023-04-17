@@ -51,6 +51,15 @@ class MySQLHandler implements DbHandler {
         return $this->get_results($sql);
     }
 
+    public function get_records_count() {
+        $table = $this->_table;
+        
+            $sql = "select count(*) from `$table`";
+        
+        return $this->get_results($sql);
+    }
+
+
     public function get_record_by_id($id) {
 
         $primary_key = $this->_primary_key;
@@ -104,10 +113,10 @@ class MySQLHandler implements DbHandler {
 
         
             if (mysqli_query($this->_db_handler, $sql)) {
-               // $this->disconnect();
+                // $this->disconnect();
                 return true;
             } else {
-                //$this->disconnect();
+                // $this->disconnect();
                 return false;
             }
         }
@@ -136,10 +145,10 @@ class MySQLHandler implements DbHandler {
         $sql = str_replace(",where", "where", $sql);
  
         if (mysqli_query($this->_db_handler, $sql)) {
-            $this->disconnect();
+            // $this->disconnect();
             return true;
         } else {
-            $this->disconnect();
+            // $this->disconnect();
             return false;
         }
     }
@@ -152,7 +161,7 @@ class MySQLHandler implements DbHandler {
         if (mysqli_query($this->_db_handler, $sql)) {
             return true;
         } else {
-            $this->disconnect();
+            // $this->disconnect();
             return false;
         }
     }

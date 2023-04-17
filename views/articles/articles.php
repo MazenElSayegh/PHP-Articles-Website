@@ -2,12 +2,12 @@
 
 <?php
     require_once("controllers/articles.php");
-    echo "<div id=container class='d-inline-flex flex-column justify-content-center align-items-center m-5'><div id=formCont><form action=".$_SERVER['PHP_SELF']." method=GET>";
-    echo "<input type=search name=article_search class='border border-1 border-primary rounded pl-1' placeholder=Product Name>";
+    echo "<body class='p-5'><div id=container class= 'm-5 py-5'><div id=formCont><form action=".$_SERVER['PHP_SELF']." method=GET>";
+    echo "<input type=search name=article_search class='mb-2 border border-1 border-primary rounded pl-1' placeholder=Product Name>";
     echo "<button type=submit class='bg-primary border border-1 border-primary rounded text-light mx-4'>Search</button></form></div>";
     ?>
   
-<div class="d-inline-flex flex-row justify-content-around align-items-center">
+
 <table class="table">
   <thead class="thead table-dark">
     <tr>
@@ -28,12 +28,12 @@
         echo "<td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?article_delete=".$index."'>delete article</a></td></tr></div>";
         $index++;
     }
-    echo "</tbody></table></div>";
+    echo "</tbody></table>";
     echo "<div id=btns class='d-inline-flex flex-row justify-content-between align-items-center'>";
-    echo "<a class='bg-dark text-light p-2 mx-4 border border-dark rounded text-decoration-none' href='".$_SERVER["PHP_SELF"]."?article_current=".$previous_index."'>Previous</a>";
-    echo "<a class='bg-dark text-light p-2 mx-4 border border-dark rounded text-decoration-none' href='".$_SERVER["PHP_SELF"]."?article_current=".$next_index."'>Next</a></div></div>";
+    echo "<a class='bg-primary text-light p-2 mx-4 border border-primary rounded text-decoration-none' href='".$_SERVER["PHP_SELF"]."?article_current=".$previous_index."'>Previous</a>";
+    echo "<a class='bg-primary text-light p-2 mx-4 border border-primary rounded text-decoration-none' href='".$_SERVER["PHP_SELF"]."?article_current=".$next_index."'>Next</a></div></div>";
     ?>
-  <h1 class="mt-5 mx-5">Create new article</h1>
+  <h3 class=" text-light text-center bg-success mt-5 mx-5 py-2">Create new article</h3>
   <form class='m-5' action='' method='POST' enctype='multipart/form-data'>
   <div class="form-group mt-4">
     <label for="exampleFormControlInput1">Title</label>
@@ -53,4 +53,4 @@
   </div>
   <button class="btn btn-primary mt-4" type="submit">Submit</button>
 </form>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script></body>
