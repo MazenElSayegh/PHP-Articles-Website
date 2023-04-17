@@ -10,6 +10,8 @@ if(isset($_GET['article_search'])){
     }
     if(isset($_GET['article_delete'])){
         $allArticles=$articles_table->get_all_records();
+        $path=$allArticles[$_GET['article_delete']]['image_path'];
+        unlink("./images/$path");
         $articles_table->delete($allArticles[$_GET['article_delete']]['id']);
         }
       /*  if(isset($_GET['update'])){
