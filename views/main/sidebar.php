@@ -66,6 +66,8 @@
                         </li>
                         
                     </ul>
+
+
                 </li>
                
                 <li class="nav-item">
@@ -73,10 +75,10 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Log Out</p>
                             </a>
-                        </li>
+                 </li>
                         
-                    </ul>
-                </li>
+                    
+                
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

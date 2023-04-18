@@ -82,7 +82,7 @@ class MySQLHandler implements DbHandler {
            // $this->disconnect();
             return $_arr_results;
         } else {
-            $this->disconnect();
+            //$this->disconnect();
             return false;
         }
     }
@@ -113,10 +113,10 @@ class MySQLHandler implements DbHandler {
 
         
             if (mysqli_query($this->_db_handler, $sql)) {
-                // $this->disconnect();
+               // $this->disconnect();
                 return true;
             } else {
-                // $this->disconnect();
+                //$this->disconnect();
                 return false;
             }
         }
@@ -145,10 +145,10 @@ class MySQLHandler implements DbHandler {
         $sql = str_replace(",where", "where", $sql);
  
         if (mysqli_query($this->_db_handler, $sql)) {
-            // $this->disconnect();
+            $this->disconnect();
             return true;
         } else {
-            // $this->disconnect();
+            $this->disconnect();
             return false;
         }
     }
@@ -161,7 +161,7 @@ class MySQLHandler implements DbHandler {
         if (mysqli_query($this->_db_handler, $sql)) {
             return true;
         } else {
-            // $this->disconnect();
+            $this->disconnect();
             return false;
         }
     }
