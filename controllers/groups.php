@@ -19,6 +19,7 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
     "icon" => $_POST['icon'],
   ];
   $groupsDB->save($values);
+  header("Refresh:0; url=groups.php");
 }
 
 if(isset($_POST['action']) && $_POST['action'] === "update") {
@@ -28,10 +29,10 @@ if(isset($_POST['action']) && $_POST['action'] === "update") {
     "icon" => $_POST['icon'],
   ];
   $groupsDB->update($values, $_POST['id']);
+  header("Refresh:0; url=groups.php");
 }
 
 if(isset($_GET['group_search'])){
-  //$arrOfProducts = $groupsDB->search('name' , $_GET['group_search'] );
   $arrOfProducts;
   $handler = mysqli_connect(__HOST__, __USER__, __PASS__, __DB__);
   $table = "groups";
@@ -51,6 +52,7 @@ if(isset($_GET['group_search'])){
 if(isset($_GET['group_delete'])){
   $allGroups=$groupsDB->get_all_records();
   $groupsDB->delete($allGroups[$_GET['group_delete']]['id']);
+  header("Refresh:0; url=groups.php");
 }
 
 if(isset($_GET['group_edit'])){
