@@ -67,6 +67,7 @@
           $index=$current_index;
 
 
+          if(count($groups) > 0) {
           foreach($groups as $group){
             echo "<tr><td>".$group["id"]."</td>";
             echo "<td><i class='fa " .$group["icon"]. "'></i></td>";
@@ -76,6 +77,10 @@
             echo "<td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?group_delete=".$index."'>Delete group</a></td></tr>";
             $index++;
         }
+      }
+      else {
+        echo "<tr><td>No Group found</td></tr>";
+      }
 
         ?>
         </tbody>
@@ -108,7 +113,7 @@
             aria-describedby="emailHelp"
             placeholder="Enter Group Icon Class"
             name="id"
-            value = "<?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['id'] ?>"
+            value = "<?php if (isset($_GET['group_edit'])  && $_GET['group_edit'] < count($groups)) echo $allGroups[$_GET['group_edit']]['id'] ?>"
             hidden
           />
         </div>
@@ -122,7 +127,7 @@
             aria-describedby="emailHelp"
             placeholder="Enter Group Icon Class"
             name="icon"
-            value = "<?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['icon'] ?>"
+            value = "<?php if (isset($_GET['group_edit'])  && $_GET['group_edit'] < count($groups)) echo $allGroups[$_GET['group_edit']]['icon'] ?>"
             required
           />
         </div>
@@ -136,9 +141,15 @@
             aria-describedby="emailHelp"
             placeholder="Enter Group Name"
             name="name"
-            value = "<?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['name'] ?>"
+            value = "<?php if (isset($_GET['group_edit'])  && $_GET['group_edit'] < count($groups)) echo $allGroups[$_GET['group_edit']]['name'] ?>"
             required
           />
+          <?php
+            if(isset($_POST['name']) && count($groupsDB->search("name", $_POST['name'])) > 0) {
+              echo '<p class="text-danger">Name is Taken</p>';
+            }
+
+          ?>
         </div>
 
         <div class="form-group">
@@ -149,7 +160,7 @@
             rows="3"
             name="description"
             required
-          ><?php if (isset($_GET['group_edit'])) echo $allGroups[$_GET['group_edit']]['description'] ?></textarea>
+          ><?php if (isset($_GET['group_edit'])  && $_GET['group_edit'] < count($groups)) echo $allGroups[$_GET['group_edit']]['description'] ?></textarea>
         </div>
 
         <?php
