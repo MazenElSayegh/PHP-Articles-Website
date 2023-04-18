@@ -1,5 +1,5 @@
 <?php
-
+try{
 $current_index=isset($_GET["article_current"]) && is_numeric($_GET["article_current"])?$_GET["article_current"]:0;
 $articles=$articles_table->get_all_records_paginated(array(),$current_index);
 $next_index=$current_index + __RECORDS_PER_PAGE__ < 16?$current_index + __RECORDS_PER_PAGE__ :0;
@@ -10,7 +10,15 @@ if(isset($_GET['article_search'])){
     }
     if(isset($_GET['article_delete'])){
         $allArticles=$articles_table->get_all_records();
+        if($_GET['article_delete']>sizeof($allArticles)){
+          throw new Exception('deleting unidentified article ID');
+        }
+        $path=$allArticles[$_GET['article_delete']]['image_path'];
+        if(isset($_GET['article_delete']['image_path'])){
+          unlink("./images/$path");
+        }
         $articles_table->delete($allArticles[$_GET['article_delete']]['id']);
+         header("Location: ../".$_SERVER["PHP_SELF"]."");
         }
       /*  if(isset($_GET['update'])){
             db->update({'id'=>$id}, $id);
@@ -19,6 +27,12 @@ if(isset($_POST['title'])){
   
   $articles_table->save($_POST);
   echo "<meta http-equiv='refresh' content='0'>";
+}
+}catch(Exception $e){
+  $exc=$e->getMessage();
+  $date = date('d.m.Y h:i:s');
+  $log = $exc."   |  Date:  ".$date."\n";
+  error_log("$log", 3, "assets/log-files/log.log");
 }
 
 ?>

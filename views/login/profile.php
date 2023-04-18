@@ -10,7 +10,7 @@ require_once ('../main/sidebar.php');
     <div class="w-50 position-absolute top-50 start-50 translate-middle" >
         <div class="card border border-dark">
             <div class="card-header mb-2 bg-secondary text-white">
-                <h3>Hello, <?php echo $_SESSION['name']; ?><h3>
+                <h3>Hello, <?php echo $_SESSION['name']; ?></h3>
             </div>
             <ul class="list-group list-group-flush my-3">
                 <li class="list-group-item">Username: <?php echo $_SESSION['user_name']; ?></li>
@@ -23,6 +23,8 @@ require_once ('../main/sidebar.php');
         <a href="../../controllers/logout.php" class="btn btn-warning mt-3 border border-dark rounded-pill">Logout</a>
     </div>
 </div>
+
+
 <?php 
 require_once ('../main/footer.php');
 }else{
