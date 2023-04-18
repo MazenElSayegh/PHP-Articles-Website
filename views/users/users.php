@@ -27,7 +27,7 @@
   <body>
     <div class="container">
       <div class="row">
-      <form action="index.php" method="POST" class="col-4">
+      <form action="users.php" method="POST" class="col-4">
           <div class=" form-group mt-4  ">
               <input
                   type="text"
@@ -43,7 +43,7 @@
           </div>
       </form>
 
-      <form action="index.php" method="POST" class="col-4">
+      <form action="users.php" method="POST" class="col-4">
             <div class=" form-group mt-4  ">
                  <select name="selected_group" class=" border border-1 border-primary rounded text-secondary pl-1">
                     <?php 
@@ -111,8 +111,8 @@
       <div class="row">
         <div class="col-5"></div>
       <div class="data">
-            <a class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "index.php?next=".$prev_index  ?>" >Prev</a>
-            <a  class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "index.php?next=".$next_index  ?>" >Next</a>
+            <a class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "users.php?next=".$prev_index  ?>" >Prev</a>
+            <a  class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "users.php?next=".$next_index  ?>" >Next</a>
       </div>
       </div>
     </div>
@@ -133,7 +133,7 @@
       </div>
 
 
-      <form action="index.php" method="POST">
+      <form action="users.php" method="POST">
 
       <div class="form-group">
           <input
