@@ -21,7 +21,7 @@ if(isset($_GET['article_search'])){
           unlink("./images/$path");
         }
         $articles_table->delete($allArticles[$_GET['article_delete']]['id']);
-         header("Location: ../".$_SERVER["PHP_SELF"]."");
+         header("Location: ../views/articles/articles.php");
         }
       /*  if(isset($_GET['update'])){
             db->update({'id'=>$id}, $id);

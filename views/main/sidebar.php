@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark  bg-dark fixed-top">
+<nav class="navbar navbar-dark  bg-dark fixed-top ">
   <div class="container-fluid ">
   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
          
           
            
-                <li class="nav-item"><a class="nav-link" href="../../controllers/users.php">Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="../users/users.php">Users</a></li>
                 <li class="nav-item"><a class="nav-link" href="../groups/groups.php">Groups</a></li>
                 <li class="nav-item"><a class="nav-link" href="../articles/articles.php">Articles</a></li>
               
