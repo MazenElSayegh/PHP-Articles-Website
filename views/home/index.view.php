@@ -1,5 +1,8 @@
-<?php require('../main/head.php') ?>
-<?php require('../main/sidebar.php') ?>
+<?php 
+session_start();
+if(isset($_SESSION['user_name'])){
+require('../main/head.php'); 
+ require('../main/sidebar.php'); ?>
 
 
     <div class="content-wrapper">
@@ -26,4 +29,8 @@
 
 </div>
 
-<?php require('../main/footer.php') ?>
+<?php require('../main/footer.php'); 
+}else{
+    header("Location: ../../");
+    exit();
+} ?>
