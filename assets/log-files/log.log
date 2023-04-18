@@ -15,3 +15,10 @@ accessing unidentified article ID   |  Date:  18.04.2023 03:49:49
 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1   |  Date:  18.04.2023 03:51:19
 deleting unidentified article ID   |  Date:  18.04.2023 03:53:31
 deleting unidentified article ID   |  Date:  18.04.2023 03:53:59
+No user   |  Date:  18.04.2023 09:32:02
+User didn't write username   |  Date:  18.04.2023 09:35:15
+No such user in database   |  Date:  18.04.2023 09:36:16
+User didn't write username   |  Date:  18.04.2023 09:43:00
+User didn't write password   |  Date:  18.04.2023 09:43:17
+No such user in database   |  Date:  18.04.2023 09:43:36
+No such user in database   |  Date:  18.04.2023 09:45:36
