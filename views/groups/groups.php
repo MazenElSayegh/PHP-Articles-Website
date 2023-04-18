@@ -46,9 +46,9 @@
     <div class="container">
 
       <?php
-      echo "<div id=container><div id=formCont><form action=".$_SERVER['PHP_SELF']." method=GET>";
-      echo "<input type=search name=group_search placeholder=Product Name>";
-      echo "<button type=submit>Search</button></form></div>";?>
+      echo "<div id=container class= 'm-2 py-2'><div id=formCont><form action=".$_SERVER['PHP_SELF']." method=GET>";
+      echo "<input class='mb-2 border border-1 border-primary rounded pl-1' type=search name=group_search placeholder=Product Name>";
+      echo "<button class='bg-primary border border-1 border-primary rounded text-light mx-4' type=submit>Search</button></form></div>";?>
 
       <table class="table">
         <thead class="thead-dark">
@@ -70,10 +70,10 @@
           foreach($groups as $group){
             echo "<tr><td>".$group["id"]."</td>";
             echo "<td><i class='fa " .$group["icon"]. "'></i></td>";
-            echo "<td>".$group["name"]."</td>";
+            echo "<td><a href='". $_SERVER["PHP_SELF"]."/../../../controllers/users.php?group=".$group["id"]."'>".$group["name"]."</a></td>";
             echo "<td>".$group["description"]."</td>";
-            echo "<td><a href='".$_SERVER["PHP_SELF"]."?group_edit=".$index."'>edit group</a></td>";
-            echo "<td><a href='".$_SERVER["PHP_SELF"]."?group_delete=".$index."'>delete group</a></td></tr>";
+            echo "<td><a class='bg-primary text-light border border-primary rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?group_edit=".$index."'>Edit Group</a></td>";
+            echo "<td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?group_delete=".$index."'>Delete group</a></td></tr>";
             $index++;
         }
 
@@ -83,13 +83,21 @@
       </table>
       <?php
       echo "<div id=btns>";
-      echo "<button type=button><a href='".$_SERVER["PHP_SELF"]."?group_current=".$previous_index."'>Previous</a></button>";
-      echo "<button type=button><a href='".$_SERVER["PHP_SELF"]."?group_current=".$next_index."'>Next</a></button></div>";
+      echo "<a class='bg-primary text-light p-2 mx-4 border border-primary rounded text-decoration-none' href='".$_SERVER["PHP_SELF"]."?group_current=".$previous_index."'>Previous</a>";
+      echo "<a class='bg-primary text-light p-2 mx-4 border border-primary rounded text-decoration-none' href='".$_SERVER["PHP_SELF"]."?group_current=".$next_index."'>Next</a></div>";
       ?>
     </div>
 
 
     <div class="container">
+      <?php
+      if (!isset($_GET['group_edit'])){
+        echo '<h3 class=" text-light text-center bg-success mt-5 mx-5 py-2">Create new Group</h3>';
+      }
+      else {
+        echo '<h3 class=" text-light text-center bg-primary mt-5 mx-5 py-2">Edit Group</h3>';
+      }
+      ?>
       <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST">
 
       <div class="form-group">

@@ -11,7 +11,7 @@ $groups=$groupsDB->get_all_records_paginated(array(),$current_index);
 $allGroups;
 $groupsCount = count($groupsDB->get_all_records());
 $next_index=$current_index + __RECORDS_PER_PAGE__ < $groupsCount?$current_index + __RECORDS_PER_PAGE__ :0;
-$previous_index=$current_index - __RECORDS_PER_PAGE__ >0?$current_index - __RECORDS_PER_PAGE__:$groupsCount - ($groupsCount % 4);
+$previous_index=$current_index - __RECORDS_PER_PAGE__ >0?$current_index - __RECORDS_PER_PAGE__:0;
 
 if(isset($_POST['action']) && $_POST['action'] === "create") {
   $values = [
