@@ -1,9 +1,17 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
 <?php
+session_start();
+if(!isset($_SESSION['user_name'])){
+  header("Location: ../../");
+  exit();
+}else{
+  if($_SESSION['group']=='Admin'||$_SESSION['group']=='Editor'){
 
-    require_once("../../controllers/articles.php");
-  
+require_once ('../main/head.php');
+require_once ('../main/sidebar.php');
+require_once("../../controllers/articles.php"); 
+?>
+<?php
     echo "<body class='p-5'><div id=container class= 'm-5 py-5'><div id=formCont><form action=".$_SERVER['PHP_SELF']." method=GET>";
     echo "<input type=search name=article_search class='mb-2 border border-1 border-primary rounded pl-1' placeholder=Product Name>";
     echo "<button type=submit class='bg-primary border border-1 border-primary rounded text-light mx-4'>Search</button></form></div>";
@@ -55,4 +63,13 @@
   </div>
   <button class="btn btn-primary mt-4" type="submit">Submit</button>
 </form>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script></body>
+<?php
+    require_once ('../main/footer.php'); 
+  }
+  else{
+    header("Location: ../login/profile.php");
+    exit();
+  } 
+}?>
+
+    

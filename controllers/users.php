@@ -1,6 +1,6 @@
 <?php
 
-    require_once("../vendor/autoload.php");
+    require_once("../../vendor/autoload.php");
     $user_id = 0;
     $user_name = '';
     $user_email= '';
@@ -14,8 +14,6 @@
     
     $db_users = new MySQLHandler("users");
     if($db_users->connect()) {
-        $db_groups = new MySQLHandler("groups");
-        if($db_groups->connect()) {
    
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 if(isset($_GET['edit'])){
@@ -32,11 +30,6 @@
                 else if(isset($_GET['delete'])) {
                     $id =(int) $_GET["delete"];
                     $db_users->delete($id);
-                }
-                else if(isset($_GET['group'])) {
-                    // $id =(int) $_GET["group"];
-                    $selected_group = intval($_GET['group']);
-                    $search=true;
                 }
         }
         else if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -77,8 +70,9 @@
             }
            
         }
-        
-            require_once("../views/users/users.php");
+        $db_groups = new MySQLHandler("groups");
+        if($db_groups->connect()) {
+            require_once("../users/users.php");
         }
 
     }
