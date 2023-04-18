@@ -6,7 +6,7 @@ require_once ('views/main/sidebar.php');
     <div class="card p-5 bg-light m-5">
     <div class="card-header my-3 bg-secondary text-white"><h2>Welcome</h2></div>
     <?php if(isset($_GET['error'])){ ?>
-        <div class="bg-danger w-25 p-2 my-3 text-center">
+        <div class="bg-danger w-50 p-2 my-3 text-center">
             <?php echo $_GET['error']; ?>
         </div> 
     <?php } ?>

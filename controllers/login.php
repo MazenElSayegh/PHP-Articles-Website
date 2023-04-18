@@ -32,7 +32,7 @@ try {
                 $sql= "SELECT * FROM users WHERE user_name= '$uname' AND password='$pass'";
                 $user=$users_db->get_results($sql);
                 if(!isset($user[0])){
-                    header("Location: ../?error=No such user is registered");
+                    header("Location: ../?error=Incorrect username or password");
                     throw new Exception("No such user in database");
                 }else{
                     $groups_db= new MySQLHandler('groups');
