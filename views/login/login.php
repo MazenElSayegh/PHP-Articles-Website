@@ -1,6 +1,6 @@
 <?php
 require_once ('views/main/head.php');
-require_once ('views/main/sidebar.php');
+// require_once ('views/main/sidebar.php');
 ?>
 <div class="container d-flex flex-column justify-content-end w-50">
     <div class="card p-5 bg-light m-5">

@@ -1,33 +1,17 @@
 <?php
+    require_once('../../controllers/users.php');
     $recordsNumber =($db_users->get_records_count());
     $current_index = isset($_GET["next"]) && is_numeric($_GET["next"]) ? (int)$_GET["next"] : 0;
     $next_index = (($current_index + __RECORDS_PER_PAGE__) < $recordsNumber[0]["count(*)"])? $current_index + __RECORDS_PER_PAGE__ : 0;
     $prev_index = (($current_index -  __RECORDS_PER_PAGE__)>0)? ($current_index -  __RECORDS_PER_PAGE__) : 0;
+
+    require_once ('../../views/main/head.php');
+    require_once ('../../views/main/sidebar.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"
-      defer
-    ></script>
-    <title>Users</title>
-  </head>
-  <body>
+<div class="mainContainer m-5">
     <div class="container">
       <div class="row">
-      <form action="index.php" method="POST" class="col-4">
+      <form action="users.php" method="POST" class="col-4">
           <div class=" form-group mt-4  ">
               <input
                   type="text"
@@ -43,7 +27,7 @@
           </div>
       </form>
 
-      <form action="index.php" method="POST" class="col-4">
+      <form action="users.php" method="POST" class="col-4">
             <div class=" form-group mt-4  ">
                  <select name="selected_group" class=" border border-1 border-primary rounded text-secondary pl-1">
                     <?php 
@@ -111,8 +95,8 @@
       <div class="row">
         <div class="col-5"></div>
       <div class="data">
-            <a class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "index.php?next=".$prev_index  ?>" >Prev</a>
-            <a  class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "index.php?next=".$next_index  ?>" >Next</a>
+            <a class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "users.php?next=".$prev_index  ?>" >Prev</a>
+            <a  class="bg-primary text-light p-2 border border-primary rounded" href="<?php echo "users.php?next=".$next_index  ?>" >Next</a>
       </div>
       </div>
     </div>
@@ -133,7 +117,7 @@
       </div>
 
 
-      <form action="index.php" method="POST">
+      <form action="users.php" method="POST">
 
       <div class="form-group">
           <input
@@ -259,7 +243,6 @@
            
       </form>
     </div>
-
-    
-  </body>
-</html>
+</div>
+    <?php
+    require_once ('../../views/main/footer.php'); ?>
