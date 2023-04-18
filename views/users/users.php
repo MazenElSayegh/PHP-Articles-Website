@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['user_name'])){
+  header("Location: ../../");
+  exit();
+}else{
+  if($_SESSION['group']=='Admin'){
     require_once('../../controllers/users.php');
     $recordsNumber =($db_users->get_records_count());
     $current_index = isset($_GET["next"]) && is_numeric($_GET["next"]) ? (int)$_GET["next"] : 0;
@@ -245,4 +251,10 @@
     </div>
 </div>
     <?php
-    require_once ('../../views/main/footer.php'); ?>
+    require_once ('../../views/main/footer.php'); 
+  }
+  else{
+    header("Location: ../login/profile.php");
+    exit();
+  } 
+}?>

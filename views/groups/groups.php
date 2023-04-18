@@ -1,4 +1,7 @@
-<?php require_once("../../controllers/groups.php"); 
+<?php 
+session_start();
+if(isset($_SESSION['user_name'])){
+require_once("../../controllers/groups.php"); 
 require_once ('../main/head.php');
 require_once ('../main/sidebar.php');
 ?>
@@ -8,7 +11,7 @@ require_once ('../main/sidebar.php');
 
       <?php
       echo "<div id=container class= 'm-2 py-2'><div id=formCont><form action=".$_SERVER['PHP_SELF']." method=GET>";
-      echo "<input class='mt-3 mb-2 border border-1 border-primary rounded pl-1' type=search name=group_search placeholder=Product Name>";
+      echo "<input class='mt-3 mb-2 border border-1 border-primary rounded pl-1' type=search name=group_search placeholder=Group Name>";
       echo "<button class='bg-primary border border-1 border-primary rounded text-light mx-4' type=submit>Search</button></form></div>";?>
 
       <table class="table">
@@ -127,4 +130,8 @@ require_once ('../main/sidebar.php');
     </div>
 
     <?php
-    require_once ('../main/footer.php'); ?>
+    require_once ('../main/footer.php'); 
+  }else{
+    header("Location: ../../");
+    exit();
+} ?>

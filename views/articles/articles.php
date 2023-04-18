@@ -1,6 +1,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
 <?php
+session_start();
+if(!isset($_SESSION['user_name'])){
+  header("Location: ../../");
+  exit();
+}else{
+  if($_SESSION['group']=='Admin'||$_SESSION['group']=='Editor'){
+
 require_once ('../main/head.php');
 require_once ('../main/sidebar.php');
 require_once("../../controllers/articles.php"); 
@@ -58,4 +64,12 @@ require_once("../../controllers/articles.php");
   <button class="btn btn-primary mt-4" type="submit">Submit</button>
 </form>
 <?php
-    require_once ('../main/footer.php'); ?>
+    require_once ('../main/footer.php'); 
+  }
+  else{
+    header("Location: ../login/profile.php");
+    exit();
+  } 
+}?>
+
+    
