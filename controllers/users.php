@@ -1,6 +1,6 @@
 <?php
 
-    require_once("../vendor/autoload.php");
+    require_once("../../vendor/autoload.php");
     $user_id = 0;
     $user_name = '';
     $user_email= '';
@@ -72,7 +72,7 @@
         }
         $db_groups = new MySQLHandler("groups");
         if($db_groups->connect()) {
-            require_once("../views/users/users.php");
+            require_once("../users/users.php");
         }
 
     }

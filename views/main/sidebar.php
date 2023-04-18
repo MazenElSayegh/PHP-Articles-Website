@@ -1,87 +1,34 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Articles</span>
-    </a>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
-            </div>
-        </div>
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Groups</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Users</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Articles</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="views/home/index.view.php" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Home</p>
-                            </a>
-                        </li>
-                        
-                    </ul>
-
-
-                </li>
-               
-                <li class="nav-item">
-                            <a href="../../controllers/logout.php" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Log Out</p>
-                            </a>
-                 </li>
-                        
-                    
-                
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
+<nav class="navbar navbar-dark  bg-dark fixed-top ">
+  <div class="container-fluid ">
+  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>  
+  <a class="navbar-brand" href="../home/index.view.php">Articles Dashboard</a>
+   
+    <div class="offcanvas offcanvas-start text-bg-dark  "  tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header bg-dark">
+        <h5 class="offcanvas-title text-white" id="offcanvasDarkNavbarLabel">Articles</h5>
+        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body bg-dark">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ">
+          <li class="nav-item">
+            <a class="nav-link active fs-1 " aria-current="page" href="../home/index.view.php">Home</a>
+          </li>
+         
+         
+          
+           
+                <li class="nav-item"><a class="nav-link" href="../users/users.php">Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="../groups/groups.php">Groups</a></li>
+                <li class="nav-item"><a class="nav-link" href="../articles/articles.php">Articles</a></li>
+              
+              <li class="nav-item"><a class="nav-link" href="../../controllers/logout.php">Logout</a></li>
+           
+         
+        </ul>
+       
+      </div>
     </div>
-    <!-- /.sidebar -->
-</aside>
+  </div>
+</nav>

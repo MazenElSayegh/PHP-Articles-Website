@@ -1,7 +1,8 @@
 <?php
-require_once("./config.php");
-require_once("../../models/DbHandler.php");
-require_once("../../models/MySQLHandler.php");
+// require_once("./config.php");
+// require_once("../../models/DbHandler.php");
+// require_once("../../models/MySQLHandler.php");
+require_once("../../vendor/autoload.php");
 
 
 $groupsDB=new MySQLHandler("groups");
@@ -10,7 +11,7 @@ $groups=$groupsDB->get_all_records_paginated(array(),$current_index);
 $allGroups;
 $groupsCount = count($groupsDB->get_all_records());
 $next_index=$current_index + __RECORDS_PER_PAGE__ < $groupsCount?$current_index + __RECORDS_PER_PAGE__ :0;
-$previous_index=$current_index - __RECORDS_PER_PAGE__ >0?$current_index - __RECORDS_PER_PAGE__:$groupsCount - ($groupsCount % 4);
+$previous_index=$current_index - __RECORDS_PER_PAGE__ >0?$current_index - __RECORDS_PER_PAGE__:0;
 
 if(isset($_POST['action']) && $_POST['action'] === "create") {
   $values = [
@@ -19,6 +20,7 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
     "icon" => $_POST['icon'],
   ];
   $groupsDB->save($values);
+  header("Refresh:0; url=groups.php");
 }
 
 if(isset($_POST['action']) && $_POST['action'] === "update") {
@@ -28,10 +30,10 @@ if(isset($_POST['action']) && $_POST['action'] === "update") {
     "icon" => $_POST['icon'],
   ];
   $groupsDB->update($values, $_POST['id']);
+  header("Refresh:0; url=groups.php");
 }
 
 if(isset($_GET['group_search'])){
-  //$arrOfProducts = $groupsDB->search('name' , $_GET['group_search'] );
   $arrOfProducts;
   $handler = mysqli_connect(__HOST__, __USER__, __PASS__, __DB__);
   $table = "groups";
@@ -51,6 +53,7 @@ if(isset($_GET['group_search'])){
 if(isset($_GET['group_delete'])){
   $allGroups=$groupsDB->get_all_records();
   $groupsDB->delete($allGroups[$_GET['group_delete']]['id']);
+  header("Refresh:0; url=groups.php");
 }
 
 if(isset($_GET['group_edit'])){

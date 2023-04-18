@@ -1,5 +1,12 @@
 <?php
 try{
+  require("../../vendor/autoload.php");
+  
+$articles_table=new MySQLHandler("articles");
+if(isset($_GET["article_id"]) && is_numeric($_GET["article_id"])){
+  require_once("./single.php");
+}
+
 $current_index=isset($_GET["article_current"]) && is_numeric($_GET["article_current"])?$_GET["article_current"]:0;
 $articles=$articles_table->get_all_records_paginated(array(),$current_index);
 $next_index=$current_index + __RECORDS_PER_PAGE__ < 16?$current_index + __RECORDS_PER_PAGE__ :0;
@@ -18,7 +25,7 @@ if(isset($_GET['article_search'])){
           unlink("./images/$path");
         }
         $articles_table->delete($allArticles[$_GET['article_delete']]['id']);
-         header("Location: ../".$_SERVER["PHP_SELF"]."");
+         header("Location: ../articles/articles.php");
         }
       /*  if(isset($_GET['update'])){
             db->update({'id'=>$id}, $id);
