@@ -1,7 +1,7 @@
 <?php
 require_once("vendor/autoload.php");
 session_start();
-require_once("views/login/login.php");
+//require_once("views/login/login.php");
 
 
 $articles_table=new MySQLHandler("articles");
