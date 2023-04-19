@@ -4,7 +4,7 @@ if(!isset($_SESSION['user_name'])){
   header("Location: ../../");
   exit();
 }else{
-if($_SESSION['group']=='Admin') {
+  if($_SESSION['group']=='Admins'){
     require_once('../../controllers/users.php');
     $recordsNumber =($db_users->get_records_count());
     $current_index = isset($_GET["next"]) && is_numeric($_GET["next"]) ? (int)$_GET["next"] : 0;

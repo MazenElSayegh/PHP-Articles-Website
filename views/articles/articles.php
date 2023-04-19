@@ -6,7 +6,7 @@ if(!isset($_SESSION['user_name'])){
   exit();
 }else{
   try{
-  if($_SESSION['group']=='Admin'||$_SESSION['group']=='Editor'){
+  if($_SESSION['group']=='Admins'||$_SESSION['group']=='Editors'){
 
 require_once ('../main/head.php');
 require_once ('../main/sidebar.php');
