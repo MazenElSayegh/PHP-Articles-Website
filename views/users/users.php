@@ -79,6 +79,7 @@ if(!isset($_SESSION['user_name'])){
       
           foreach($users as $user) {
             $group = $db_groups->get_record_by_id($user['group_id']);
+            if($user["is_deleted"]==0){
             echo '
             <tr>
               <td scope="row" class="groupID">' . $user['id'] . '</td>
@@ -96,6 +97,7 @@ if(!isset($_SESSION['user_name'])){
             </tr>
           ';
         }
+      }
 
         ?>
         </tbody>

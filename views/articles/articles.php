@@ -8,8 +8,8 @@ if(!isset($_SESSION['user_name'])){
   try{
   if($_SESSION['group']=='Admin'||$_SESSION['group']=='Editor'){
 
-/*require_once ('../main/head.php');
-require_once ('../main/sidebar.php');*/
+require_once ('../main/head.php');
+require_once ('../main/sidebar.php');
 require_once("../../controllers/articles.php"); 
 ?>
 <?php
@@ -32,12 +32,14 @@ require_once("../../controllers/articles.php");
     <?php
     $index=$current_index;
     foreach($articles as $article){
+        if($article["is_deleted"]==0){
         echo "<div class='m-4 p-7'>";
         echo "<tr class='m-4 p-5'><td>".$article["title"]."</td>";
         echo "<td>".$article["publishing_date"]."</td>";
         echo "<td><a class='bg-primary text-light border border-primary rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?article_id=".$index."'>view article</a></td>";
         echo "<td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?article_delete=".$index."'>delete article</a></td></tr></div>";
         $index++;
+      }
     }
     echo "</tbody></table>";
     echo "<div id=btns class='d-inline-flex flex-row justify-content-between align-items-center'>";

@@ -33,6 +33,7 @@ require_once ('../main/sidebar.php');
 
           if(count($groups) > 0) {
           foreach($groups as $group){
+            if($group["is_deleted"]==0){
             echo "<tr><td>".$group["id"]."</td>";
             echo "<td><i class='fa " .$group["icon"]. "'></i></td>";
             echo "<td><a href='". $_SERVER["PHP_SELF"]."/../../../controllers/users.php?group=".$group["id"]."'>".$group["name"]."</a></td>";
@@ -41,6 +42,7 @@ require_once ('../main/sidebar.php');
             echo "<td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?group_delete=".$index."'>Delete group</a></td></tr>";
             $index++;
         }
+      }
       }
       else {
         echo "<tr><td>No Group found</td></tr>";
