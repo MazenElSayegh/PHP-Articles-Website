@@ -3,7 +3,6 @@ require_once ('../../vendor/autoload.php');
 $groups_db= new MySQLHandler('groups');
 $users_db=new MySQLHandler('users');
 $groups=$groups_db->get_all_records();
-$users=$users_db->get_all_records();
 $dataPoints=[];
 $groupName="";
 foreach($groups as $group){

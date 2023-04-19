@@ -4,7 +4,6 @@ require_once("../vendor/autoload.php");
 try {
     session_start();
     $conn= mysqli_connect(__HOST__, __USER__, __PASS__, __DB__);
-    // var_dump($_POST);
     if(!$conn) {
         echo 'Connection failed';
     } else {
@@ -22,11 +21,9 @@ try {
             if(empty($uname)) {
                 header("Location: ../?error=Username is required");
                 throw new Exception("User didn't write username");
-                exit();
             } elseif(empty($pass)) {
                 header("Location: ../?error=Password is required");
                 throw new Exception("User didn't write password");
-                exit();
             } else {
                 $users_db= new MySQLHandler('users');
                 $sql= "SELECT * FROM users WHERE user_name= '$uname' AND password='$pass'";
@@ -37,8 +34,6 @@ try {
                 }else{
                     $groups_db= new MySQLHandler('groups');
                 $group=$groups_db->get_record_by_id($user[0]['group_id']);
-                // var_dump($group);
-                // var_dump($user);
                     $_SESSION['user_name']=$user[0]['user_name'];
                     $_SESSION['name']=$user[0]['name'];
                     $_SESSION['password']=$user[0]['password'];
@@ -46,7 +41,6 @@ try {
                     $_SESSION['mobile']=$user[0]['mobile'];
                     $_SESSION['group']=$group[0]['name'];
                     $_SESSION['subscription_date']=$user[0]['subscription_date'];
-                    // var_dump($_SESSION);
                     header("Location: ../views/login/profile.php");
                     exit();
             }

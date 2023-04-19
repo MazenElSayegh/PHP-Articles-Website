@@ -1,7 +1,4 @@
 <?php
-// require_once("./config.php");
-// require_once("../../models/DbHandler.php");
-// require_once("../../models/MySQLHandler.php");
 require_once("../../vendor/autoload.php");
 
 

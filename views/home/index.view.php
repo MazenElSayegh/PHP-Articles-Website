@@ -5,8 +5,6 @@ require('../main/head.php');
  require('../main/sidebar.php');
  require_once('../../controllers/home.php');
  ?>
-
-
     <div class="content-wrapper m-5">
         <div class="content-header">
             <div class="container-fluid">
