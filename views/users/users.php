@@ -8,12 +8,12 @@ if(!isset($_SESSION['user_name'])){
     require_once('../../controllers/users.php');
     $recordsNumber =($db_users->get_records_count());
     $current_index = isset($_GET["next"]) && is_numeric($_GET["next"]) ? (int)$_GET["next"] : 0;
-    $next_index = (($current_index + __RECORDS_PER_PAGE__) < $recordsNumber[0]["count(*)"])? $current_index + __RECORDS_PER_PAGE__ : 0;
-    $prev_index = (($current_index -  __RECORDS_PER_PAGE__)>0)? ($current_index -  __RECORDS_PER_PAGE__) : 0;
+    $next_index = (($current_index + __RECORDS_PER_PAGE__) < $recordsNumber[0]["count(*)"]) ? $current_index + __RECORDS_PER_PAGE__ : 0;
+    $prev_index = (($current_index -  __RECORDS_PER_PAGE__)>0) ? ($current_index -  __RECORDS_PER_PAGE__) : 0;
 
-    require_once ('../../views/main/head.php');
-    require_once ('../../views/main/sidebar.php');
-?>
+    require_once('../../views/main/head.php');
+    require_once('../../views/main/sidebar.php');
+    ?>
 <div class="mainContainer m-5">
     <div class="container">
       <div class="row">
@@ -40,7 +40,9 @@ if(!isset($_SESSION['user_name'])){
                          $groups = $db_groups->get_all_records_paginated(array());
                          echo '<option>Filter by group name</option>';
                          foreach ($groups as $group){
-                         echo "<option value=".$group["id"].">".$group["name"]."</option>"; 
+                          if($group["is_deleted"]==0){
+                          echo "<option value=".$group["id"].">".$group["name"]."</option>"; 
+                          }
                         }
                     ?>
                   </select>
@@ -67,19 +69,17 @@ if(!isset($_SESSION['user_name'])){
         <tbody class="groupTableBody">
 
         <?php
-          if($search && !empty($search_name)){
-             $users=$db_users->search('name', $search_name);
+          if($search && !empty($search_name)) {
+              $users=$db_users->search('name', $search_name);
+          } elseif($search && $selected_group!=0) {
+              $users=$db_users->search('group_id', $selected_group);
+          } else {
+              $users =$db_users->get_all_records_paginated(array(), $current_index);
           }
-          elseif($search && $selected_group!=0){
-            $users=$db_users->search('group_id', $selected_group);
-          }
-           else{
-            $users =$db_users->get_all_records_paginated(array(),$current_index);
-         }
-      
+
           foreach($users as $user) {
-            $group = $db_groups->get_record_by_id($user['group_id']);
             if($user["is_deleted"]==0){
+            $group = $db_groups->get_record_by_id($user['group_id']);
             echo '
             <tr>
               <td scope="row" class="groupID">' . $user['id'] . '</td>
@@ -99,7 +99,7 @@ if(!isset($_SESSION['user_name'])){
         }
       }
 
-        ?>
+    ?>
         </tbody>
       </table>
       <div class="row">
@@ -113,23 +113,25 @@ if(!isset($_SESSION['user_name'])){
     
     <div class="container">
       <div class="row">
-      <?php 
-              echo '<div class = "col" >';
-              if(!$update){
-                  echo '<h3 class = " text-light text-center bg-success mt-4 py-2">Create New User</h3>';
-               } 
-              else{
-                  echo '<h3 class = "text-light text-center bg-primary mt-4 py-2">Update Existing User </h3>';
-               }
-               echo '</div>';
-         ?>
+      <?php
+          echo '<div class = "col" >';
+    if(!$update) {
+        echo '<h3 class = " text-light text-center bg-success mt-4 py-2">Create New User</h3>';
+    } else {
+        echo '<h3 class = "text-light text-center bg-primary mt-4 py-2">Update Existing User </h3>';
+    }
+    echo '</div>';
+    ?>
 
       </div>
-
-      <div class="alert alert-danger w-100 p-2 my-3 text-center">
-            <?php echo $error; ?>
-        </div> 
-
+       <?php
+     if(empty(!$error)) {
+     
+      echo  '<div class="alert alert-danger w-100 p-2 my-3 text-center ">';
+    echo $error;
+    echo '</div>';
+}
+          ?>
       <form action="users.php" method="POST">
 
       <div class="form-group">
