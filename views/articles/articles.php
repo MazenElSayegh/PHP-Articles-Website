@@ -7,8 +7,8 @@ if(!isset($_SESSION['user_name'])){
 }else{
   if($_SESSION['group']=='Admin'||$_SESSION['group']=='Editor'){
 
-require_once ('../main/head.php');
-require_once ('../main/sidebar.php');
+/*require_once ('../main/head.php');
+require_once ('../main/sidebar.php');*/
 require_once("../../controllers/articles.php"); 
 ?>
 <?php

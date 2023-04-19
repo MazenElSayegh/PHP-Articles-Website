@@ -2,6 +2,7 @@
 require_once ('../main/head.php');
 require_once ('../main/sidebar.php');
 require("../../vendor/autoload.php");
+require_once("../../controllers/articles.php");
 ?>
 
   <div class="wrapper">
@@ -9,8 +10,11 @@ require("../../vendor/autoload.php");
     <?php
     try{
     $index=isset($_GET["article_id"])?$_GET["article_id"]:"";
+    var_dump($index);
     $articles=$articles_table->get_all_records();
-    if($index>sizeof($articles)){
+    $art=sizeof($articles);
+    var_dump($art);
+    if($index>sizeof($articles)-1){
       throw new Exception('accessing unidentified article ID');
     }
         echo "<div class='card d-inline-flex flex-column justify-content-around align-items-start m-5 p-5 min-vw-50'>";
@@ -25,8 +29,8 @@ require("../../vendor/autoload.php");
       $exc=$e->getMessage();
       $date = date('d.m.Y h:i:s');
       $log = $exc."   |  Date:  ".$date."\n";
-      error_log("$log",3, "assets/log-files/log.log");
-      header("Location: ../".$_SERVER["PHP_SELF"]."");
+      error_log("$log",3, "../../assets/log-files/log.log");
+      header("Location: ./articles.php");
     }
       ?>
     </div>

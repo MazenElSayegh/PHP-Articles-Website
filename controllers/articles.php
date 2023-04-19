@@ -17,7 +17,7 @@ if(isset($_GET['article_search'])){
     }
     if(isset($_GET['article_delete'])){
         $allArticles=$articles_table->get_all_records();
-        if($_GET['article_delete']>sizeof($allArticles)){
+        if($_GET['article_delete']>sizeof($allArticles)-1){
           throw new Exception('deleting unidentified article ID');
         }
         $path=$allArticles[$_GET['article_delete']]['image_path'];
@@ -39,7 +39,7 @@ if(isset($_POST['title'])){
   $exc=$e->getMessage();
   $date = date('d.m.Y h:i:s');
   $log = $exc."   |  Date:  ".$date."\n";
-  error_log("$log", 3, "assets/log-files/log.log");
+  error_log("$log", 3, "../../assets/log-files/log.log");
 }
 
 ?>
