@@ -43,6 +43,10 @@
             if($_POST["action"]==="create"){
                 $users =$db_users->get_all_records_paginated(array());
                 $flag =0;
+                $email = $_POST["user_email"];
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $error = "Invalid email format";
+}
 try {
     foreach($users as $user) {
 

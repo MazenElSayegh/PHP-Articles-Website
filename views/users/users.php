@@ -78,14 +78,9 @@ if($_SESSION['group']=='Admin') {
           }
 
           foreach($users as $user) {
-<<<<<<< HEAD
-              $group = $db_groups->get_record_by_id($user['group_id']);
-              echo '
-=======
             if($user["is_deleted"]==0){
             $group = $db_groups->get_record_by_id($user['group_id']);
             echo '
->>>>>>> 99d44a53715d1fd0e130920c7781f15ce556fc16
             <tr>
               <td scope="row" class="groupID">' . $user['id'] . '</td>
               <td scope="row" class="groupID">' . $user['name'] . '</td>
@@ -101,12 +96,8 @@ if($_SESSION['group']=='Admin') {
               </td>
             </tr>
           ';
-<<<<<<< HEAD
-          }
-=======
         }
       }
->>>>>>> 99d44a53715d1fd0e130920c7781f15ce556fc16
 
     ?>
         </tbody>
