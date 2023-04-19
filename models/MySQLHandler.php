@@ -152,7 +152,14 @@ class MySQLHandler implements DbHandler {
     }
 
     public function delete($id) {
+        $primary_key = $this->_primary_key;
+
         $table = $this->_table;
+        $sql = "select * from `$table` where `$primary_key` = '$id' ";
+
+        $this->update(['is_deleted'=>1], $id);
+        //var_dump( $record_to_be_softDeleted);
+       /* $table = $this->_table;
         $primary_key = $this->_primary_key;
         $sql = "delete  from `" . $table . "` where `" . $primary_key . "` = $id";
         $this->debug($sql);
@@ -161,7 +168,7 @@ class MySQLHandler implements DbHandler {
         } else {
             $this->disconnect();
             return false;
-        }
+        }*/
     }
 
     private function debug($sql) {

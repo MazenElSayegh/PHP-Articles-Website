@@ -36,13 +36,15 @@ if($_SESSION['group']=='Admin') {
       <form action="users.php" method="POST" class="col-4">
             <div class=" form-group mt-4  ">
                  <select name="selected_group" class=" border border-1 border-primary rounded text-secondary pl-1">
-                    <?php
-                             $groups = $db_groups->get_all_records_paginated(array());
-    echo '<option>Filter by group name</option>';
-    foreach ($groups as $group) {
-        echo "<option value=".$group["id"].">".$group["name"]."</option>";
-    }
-    ?>
+                    <?php 
+                         $groups = $db_groups->get_all_records_paginated(array());
+                         echo '<option>Filter by group name</option>';
+                         foreach ($groups as $group){
+                          if($group["is_deleted"]==0){
+                          echo "<option value=".$group["id"].">".$group["name"]."</option>"; 
+                          }
+                        }
+                    ?>
                   </select>
                   <button class="bg-primary border border-1 border-primary rounded text-light" value="filter" name="action">
                        filter
@@ -76,8 +78,14 @@ if($_SESSION['group']=='Admin') {
           }
 
           foreach($users as $user) {
+<<<<<<< HEAD
               $group = $db_groups->get_record_by_id($user['group_id']);
               echo '
+=======
+            if($user["is_deleted"]==0){
+            $group = $db_groups->get_record_by_id($user['group_id']);
+            echo '
+>>>>>>> 99d44a53715d1fd0e130920c7781f15ce556fc16
             <tr>
               <td scope="row" class="groupID">' . $user['id'] . '</td>
               <td scope="row" class="groupID">' . $user['name'] . '</td>
@@ -93,7 +101,12 @@ if($_SESSION['group']=='Admin') {
               </td>
             </tr>
           ';
+<<<<<<< HEAD
           }
+=======
+        }
+      }
+>>>>>>> 99d44a53715d1fd0e130920c7781f15ce556fc16
 
     ?>
         </tbody>

@@ -62,3 +62,9 @@ Cannot delete or update a parent row: a foreign key constraint fails (`articlesp
 Cannot delete or update a parent row: a foreign key constraint fails (`articlesproject`.`users`, CONSTRAINT `users_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`))   |  Date:  19.04.2023 03:57:02
 Cannot delete or update a parent row: a foreign key constraint fails (`articlesproject`.`users`, CONSTRAINT `users_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`))   |  Date:  19.04.2023 03:57:03
 Cannot delete or update a parent row: a foreign key constraint fails (`articlesproject`.`users`, CONSTRAINT `users_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`))   |  Date:  19.04.2023 03:57:03
+accessing articles for unauthorized user   |  Date:  19.04.2023 03:03:30
+accessing articles for unauthorized user   |  Date:  19.04.2023 03:03:30
+accessing articles for unauthorized user   |  Date:  19.04.2023 03:03:31
+accessing articles for unauthorized user   |  Date:  19.04.2023 03:03:32
+accessing articles for unauthorized user   |  Date:  19.04.2023 03:03:37
+accessing articles for unauthorized user   |  Date:  19.04.2023 03:03:38
