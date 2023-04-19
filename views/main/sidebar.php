@@ -18,11 +18,15 @@
          
          
           
-                <li class="nav-item"><a class="nav-link" href="../login/profile.php">My Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="../login/profile.php">My Profile</a></li>
+          <?php if($_SESSION['group']=='Admin'){ ?>
                 <li class="nav-item"><a class="nav-link" href="../users/users.php">Users</a></li>
+                <?php } ?>
                 <li class="nav-item"><a class="nav-link" href="../groups/groups.php">Groups</a></li>
-                <li class="nav-item"><a class="nav-link" href="../articles/articles.php">Articles</a></li>
-                <li class="nav-item"><a class="nav-link" href="../../controllers/logout.php">Logout</a></li>
+                <?php if($_SESSION['group']=='Admin'||$_SESSION['group']=='Editor'){ ?>
+                  <li class="nav-item"><a class="nav-link" href="../articles/articles.php">Articles</a></li>
+                <?php } ?>
+              <li class="nav-item"><a class="nav-link" href="../../controllers/logout.php">Logout</a></li>
            
          
         </ul>
