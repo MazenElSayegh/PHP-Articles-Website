@@ -60,6 +60,7 @@ if(!isset($_SESSION['user_name'])){
             <th scope="col">Phone</th>
             <th scope="col">User Name</th>
             <th scope="col">Group Name</th>
+            <th scope="col">Subscription Date</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -86,6 +87,7 @@ if(!isset($_SESSION['user_name'])){
               <td scope="row" class="groupID">' . $user['mobile'] . '</td>
               <td scope="row" class="groupID">' . $user['user_name'] . '</td>
               <td scope="row" class="groupID">' . $group[0]['name'] . '</td>
+              <td scope="row" class="groupID">' . $user['subscription_date'] . '</td>
               <td>
               
               <a  class="bg-primary text-light p-2 border border-primary rounded" href ='.$_SERVER["PHP_SELF"].'?edit='.$user['id'].' >Edit</a>
@@ -122,6 +124,9 @@ if(!isset($_SESSION['user_name'])){
 
       </div>
 
+      <div class="alert alert-danger w-100 p-2 my-3 text-center">
+            <?php echo $error; ?>
+        </div> 
 
       <form action="users.php" method="POST">
 
@@ -178,6 +183,7 @@ if(!isset($_SESSION['user_name'])){
             value="<?php echo  $u_name ?>"
             required
           />
+          
         </div>
 
         <div class="form-group">
