@@ -34,7 +34,7 @@ require_once ('../main/sidebar.php');
           foreach($groups as $group){
             echo "<tr><td>".$group["id"]."</td>";
             echo "<td><i class='fa " .$group["icon"]. "'></i></td>";
-            echo "<td><a href='". $_SERVER["PHP_SELF"]."/../../../controllers/users.php?group=".$group["id"]."'>".$group["name"]."</a></td>";
+            echo "<td><a href='../users/users.php?group=".$group["id"]."'>".$group["name"]."</a></td>";
             echo "<td>".$group["description"]."</td>";
             echo "<td><a class='bg-primary text-light border border-primary rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?group_edit=".$index."'>Edit Group</a></td>";
             echo "<td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?group_delete=".$index."'>Delete group</a></td></tr>";

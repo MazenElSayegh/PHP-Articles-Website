@@ -9,8 +9,6 @@ if(!isset($_SESSION['user_name'])){
 
 require_once ('../main/head.php');
 require_once ('../main/sidebar.php');
-?>
-<?php
 
     require_once("../../controllers/articles.php");
   
