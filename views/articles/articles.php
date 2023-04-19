@@ -71,15 +71,13 @@ require_once ('../main/sidebar.php');
   }
   else{
     throw new Exception('accessing articles for unauthorized user');
-    header("Location: ../login/profile.php");
-    exit();
   }
 }catch(Exception $e){
   $exc=$e->getMessage();
   $date = date('d.m.Y h:i:s');
   $log = $exc."   |  Date:  ".$date."\n";
   error_log("$log",3, "../../assets/log-files/log.log");
-  header("Location: ../home/index.view.php");
+  header("Location: ../login/profile.php");
 }
 }?>
 
