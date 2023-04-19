@@ -11,6 +11,7 @@
     $selected_group=0;
     $update= false;
     $search= false;
+    $error='';
     
     $db_users = new MySQLHandler("users");
     if($db_users->connect()) {
@@ -34,18 +35,36 @@
         }
         else if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($_POST["action"]==="create"){
-              
-                $values = [
-                    "name" => $_POST['user_name'],
-                    "email" => $_POST['user_email'],
-                    "mobile" => $_POST['user_phone'],
-                    "user_name" => $_POST['user'],
-                    "password" => $_POST['user_password'],
-                    "group_id" => $_POST['user_group_name'],
-                  ];
-                $db_users->save($values);
-                // $data = json_decode(file_get_contents('php://input'), true);
-                // $db_users->save($data);
+                $users =$db_users->get_all_records_paginated(array());
+                $flag =0;
+                foreach($users as $user){
+                    
+                    if($_POST['user']===$user['user_name']){
+                        $error = "this username has already been taken";
+                        $flag=1;
+                        break;
+
+                    }
+                    elseif($_POST['user_email']===$user['email']){
+                        $error = "this email has already been taken";
+                        $flag=1;
+                        break;
+                    }
+                }
+                var_dump($flag);
+                    if($flag==0) {
+                        $values = [
+                            "name" => $_POST['user_name'],
+                            "email" => $_POST['user_email'],
+                            "mobile" => $_POST['user_phone'],
+                            "user_name" => $_POST['user'],
+                            "password" => $_POST['user_password'],
+                            "group_id" => $_POST['user_group_name'],
+                        ];
+                        $db_users->save($values);
+                        // $data = json_decode(file_get_contents('php://input'), true);
+                        // $db_users->save($data);
+                    }
             }
             elseif($_POST["action"]==="update"){
                 $id = intval($_POST['user_id']);
