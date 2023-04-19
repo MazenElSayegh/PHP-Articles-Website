@@ -1,7 +1,11 @@
 <?php
 try{
   require("../../vendor/autoload.php");
+  
 $articles_table=new MySQLHandler("articles");
+if(isset($_GET["article_id"]) && is_numeric($_GET["article_id"])){
+  require_once("./single.php");
+}
 
 $current_index=isset($_GET["article_current"]) && is_numeric($_GET["article_current"])?$_GET["article_current"]:0;
 $articles=$articles_table->get_all_records_paginated(array(),$current_index);
@@ -13,7 +17,7 @@ if(isset($_GET['article_search'])){
     }
     if(isset($_GET['article_delete'])){
         $allArticles=$articles_table->get_all_records();
-        if($_GET['article_delete']>sizeof($allArticles)){
+        if($_GET['article_delete']>sizeof($allArticles)-1){
           throw new Exception('deleting unidentified article ID');
         }
         $path=$allArticles[$_GET['article_delete']]['image_path'];
@@ -21,7 +25,7 @@ if(isset($_GET['article_search'])){
           unlink("./images/$path");
         }
         $articles_table->delete($allArticles[$_GET['article_delete']]['id']);
-         header("Location: ../views/articles/articles.php");
+         header("Location: ../articles/articles.php");
         }
       /*  if(isset($_GET['update'])){
             db->update({'id'=>$id}, $id);
@@ -35,7 +39,7 @@ if(isset($_POST['title'])){
   $exc=$e->getMessage();
   $date = date('d.m.Y h:i:s');
   $log = $exc."   |  Date:  ".$date."\n";
-  error_log("$log", 3, "assets/log-files/log.log");
+  error_log("$log", 3, "../../assets/log-files/log.log");
 }
 
 ?>
