@@ -31,6 +31,7 @@ require_once ('../main/sidebar.php');
   <tbody>
     <?php
     $index=$current_index;
+    if (count($articles)>0){
     foreach($articles as $article){
         if($article["is_deleted"]==0){
         echo "<div class='m-4 p-7'>";
@@ -38,9 +39,10 @@ require_once ('../main/sidebar.php');
         echo "<td>".$article["publishing_date"]."</td>";
         echo "<td><a class='bg-primary text-light border border-primary rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?article_id=".$index."'>view article</a></td>";
         echo "<td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href='".$_SERVER["PHP_SELF"]."?article_delete=".$index."'>delete article</a></td></tr></div>";
-        $index++;
       }
+      $index++;
     }
+  }
     echo "</tbody></table>";
     echo "<div id=btns class='d-inline-flex flex-row justify-content-between align-items-center'>";
     echo "<a class='bg-primary text-light p-2 mx-4 border border-primary rounded text-decoration-none' href='".$_SERVER["PHP_SELF"]."?article_current=".$previous_index."'>Previous</a>";

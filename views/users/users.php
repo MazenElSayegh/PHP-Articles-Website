@@ -228,15 +228,19 @@ if(!isset($_SESSION['user_name'])){
                     $group = $db_groups->get_record_by_id($user_group_id);
                     echo "<option value=".$user_group_id.">".$group[0]["name"]."</option>"; 
                     foreach ($groups as $group){
+                      if($group["is_deleted"]==0){
                         if($user_group_id == $group["id"]) {
                             continue;
                           }
                         echo "<option value=".$group["id"].">".$group["name"]."</option>";
+                        }
                     }
                   }else{
                     echo '<option></option>';
                     foreach ($groups as $group){
-                      echo "<option value=".$group["id"].">".$group["name"]."</option>"; 
+                      if($group["is_deleted"]==0){
+                        echo "<option value=".$group["id"].">".$group["name"]."</option>";
+                      } 
                     }
                   
                   }

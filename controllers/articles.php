@@ -22,7 +22,7 @@ if(isset($_GET['article_search'])){
         }
         $path=$allArticles[$_GET['article_delete']]['image_path'];
         if(isset($_GET['article_delete']['image_path'])){
-          unlink("./images/$path");
+          unlink("../../images/$path");
         }
         $articles_table->delete($allArticles[$_GET['article_delete']]['id']);
          header("Location: ../articles/articles.php");

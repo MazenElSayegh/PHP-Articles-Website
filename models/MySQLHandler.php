@@ -103,7 +103,7 @@ class MySQLHandler implements DbHandler {
                 $sql1 .= "`image_path` ,";
                 $valueImagePath=$_FILES['image_path']['name'];
                 $sql2 .=" '" . $valueImagePath . "' ,";
-                move_uploaded_file($_FILES['image_path']['tmp_name'], "images/". $_FILES['image_path']['name']); 
+                move_uploaded_file($_FILES['image_path']['tmp_name'], "../../assets/images/". $_FILES['image_path']['name']); 
             }
             $sql1 = $sql1 . ") ";
             $sql2 = $sql2 . ") ";
