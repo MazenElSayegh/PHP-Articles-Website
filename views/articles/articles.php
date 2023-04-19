@@ -7,13 +7,11 @@ if(!isset($_SESSION['user_name'])){
 }else{
   if($_SESSION['group']=='Admin'||$_SESSION['group']=='Editor'){
 
-require_once ('../main/head.php');
-require_once ('../main/sidebar.php');
+/*require_once ('../main/head.php');
+require_once ('../main/sidebar.php');*/
+require_once("../../controllers/articles.php"); 
 ?>
 <?php
-
-    require_once("../../controllers/articles.php");
-  
     echo "<body class='p-5'><div id=container class= 'm-5 py-5'><div id=formCont><form action=".$_SERVER['PHP_SELF']." method=GET>";
     echo "<input type=search name=article_search class='mb-2 border border-1 border-primary rounded pl-1' placeholder=Product Name>";
     echo "<button type=submit class='bg-primary border border-1 border-primary rounded text-light mx-4'>Search</button></form></div>";

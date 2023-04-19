@@ -15,6 +15,18 @@ accessing unidentified article ID   |  Date:  18.04.2023 03:49:49
 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1   |  Date:  18.04.2023 03:51:19
 deleting unidentified article ID   |  Date:  18.04.2023 03:53:31
 deleting unidentified article ID   |  Date:  18.04.2023 03:53:59
+deleting unidentified article ID   |  Date:  18.04.2023 03:59:30
+deleting unidentified article ID   |  Date:  18.04.2023 03:59:34
+accessing unidentified article ID   |  Date:  18.04.2023 03:59:42
+You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1   |  Date:  18.04.2023 08:54:07
+You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1   |  Date:  18.04.2023 08:54:14
+accessing unidentified article ID   |  Date:  18.04.2023 08:57:09
+deleting unidentified article ID   |  Date:  18.04.2023 08:58:48
+deleting unidentified article ID   |  Date:  18.04.2023 08:59:40
+accessing unidentified article ID   |  Date:  18.04.2023 09:06:34
+accessing unidentified article ID   |  Date:  18.04.2023 09:06:58
+accessing unidentified article ID   |  Date:  18.04.2023 09:08:02
+accessing unidentified article ID   |  Date:  18.04.2023 09:09:00
 No user   |  Date:  18.04.2023 09:32:02
 User didn't write username   |  Date:  18.04.2023 09:35:15
 No such user in database   |  Date:  18.04.2023 09:36:16
@@ -25,4 +37,3 @@ No such user in database   |  Date:  18.04.2023 09:45:36
 No such user in database   |  Date:  18.04.2023 10:05:31
 No such user in database   |  Date:  18.04.2023 10:06:27
 No such user in database   |  Date:  18.04.2023 10:07:03
-No such user in database   |  Date:  19.04.2023 01:16:51
