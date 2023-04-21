@@ -6,18 +6,11 @@ try {
     $conn= mysqli_connect(__HOST__, __USER__, __PASS__, __DB__);
     if(!$conn) {
         echo 'Connection failed';
+        throw new Exception("Connection failed");
     } else {
         if(isset($_POST['uname']) && isset($_POST['password'])) {
-            function validate($data)
-            {
-                $data =trim($data);
-                $data= stripslashes($data);
-                $data=htmlspecialchars($data);
-                return $data;
-            }
-
-            $uname= validate($_POST['uname']);
-            $pass=validate($_POST['password']);
+            $uname= ($_POST['uname']);
+            $pass=($_POST['password']);
             if(empty($uname)) {
                 header("Location: ../?error=Username is required");
                 throw new Exception("User didn't write username");
@@ -32,6 +25,13 @@ try {
                     header("Location: ../?error=Incorrect username or password");
                     throw new Exception("No such user in database");
                 }else{
+                    $id = $user[0]['id'];
+                    $last_login=$user[0]['last_login'];
+                    date_default_timezone_set('Africa/Cairo');
+                $values = [
+                    "last_login" => date('Y-m-d h:i:sa',time())
+                  ];
+                 $users_db->update($values,$id); 
                     $groups_db= new MySQLHandler('groups');
                 $group=$groups_db->get_record_by_id($user[0]['group_id']);
                     $_SESSION['user_name']=$user[0]['user_name'];
@@ -41,6 +41,7 @@ try {
                     $_SESSION['mobile']=$user[0]['mobile'];
                     $_SESSION['group']=$group[0]['name'];
                     $_SESSION['subscription_date']=$user[0]['subscription_date'];
+                    $_SESSION['last_login']=$last_login;
                     header("Location: ../views/login/profile.php");
                     exit();
             }

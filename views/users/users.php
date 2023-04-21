@@ -1,10 +1,10 @@
 <?php
 session_start();
+try {
 if(!isset($_SESSION['user_name'])){
   header("Location: ../../");
-  exit();
+  throw new Exception('unauthorized access for users page');
 }else{
-try {
     if($_SESSION['group']=='Admins') {
         require_once('../../controllers/users.php');
         $recordsNumber =($db_users->get_records_count());
@@ -267,14 +267,14 @@ try {
     <?php
     require_once('../../views/main/footer.php');
     } else {
-      throw new Exception('accessing users for unauthorized user');
+      header("Location: ../login/profile.php");
+      throw new Exception('unauthorized access for users page');
     }
-}catch(Exception $e){
+}
+ }catch(Exception $e){
   $exc=$e->getMessage();
   $date = date('d.m.Y h:i:s');
   $log = $exc."   |  Date:  ".$date."\n";
   error_log("$log",3, "../../assets/log-files/log.log");
-  header("Location: ../login/profile.php");
 }
- }
   ?>

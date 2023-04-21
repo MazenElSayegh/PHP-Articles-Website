@@ -1,15 +1,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 <?php
 session_start();
+try{
 if(!isset($_SESSION['user_name'])){
   header("Location: ../../");
-  exit();
+  throw new Exception('unauthorized access for articles');
 }else{
-  try{
   if($_SESSION['group']=='Admins'||$_SESSION['group']=='Editors'){
 
-require_once ('../main/head.php');
-require_once ('../main/sidebar.php');
+    require_once ('../main/head.php');
+    require_once ('../main/sidebar.php');
 
     require_once("../../controllers/articles.php");
   
@@ -72,15 +72,15 @@ require_once ('../main/sidebar.php');
     require_once ('../main/footer.php'); 
   }
   else{
-    throw new Exception('accessing articles for unauthorized user');
+    header("Location: ../login/profile.php");
+    throw new Exception('unauthorized access for articles');
   }
+}
 }catch(Exception $e){
   $exc=$e->getMessage();
   $date = date('d.m.Y h:i:s');
   $log = $exc."   |  Date:  ".$date."\n";
   error_log("$log",3, "../../assets/log-files/log.log");
-  header("Location: ../login/profile.php");
-}
 }?>
 
     

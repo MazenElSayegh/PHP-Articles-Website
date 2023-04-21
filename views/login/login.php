@@ -1,4 +1,5 @@
 <?php
+    if(!isset($_SESSION['user_name'])==true) {
 require_once ('views/main/head.php');
 ?>
 <div class="container d-flex flex-column justify-content-end w-50 p-1">
@@ -23,4 +24,9 @@ require_once ('views/main/head.php');
     </div>
 </div>
 <?php 
-require_once ('views/main/footer.php'); ?>
+require_once ('views/main/footer.php'); 
+} else {
+    header("Location: views/login/profile.php");
+    exit();
+}
+?>
