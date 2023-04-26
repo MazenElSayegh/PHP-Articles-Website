@@ -70,7 +70,7 @@
         error_log("$log", 3, "../../assets/log-files/log.log");
     }
 
-        var_dump($flag);
+        // var_dump($flag);
     if($flag==0) {
         $values = [
             "name" => $_POST['user_name'],
@@ -88,6 +88,34 @@
             }
             elseif($_POST["action"]==="update"){
                 $id = intval($_POST['user_id']);
+                $flag =0;
+                $email = $_POST["user_email"];
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $error = "Invalid email format";
+    
+    try {
+        foreach($users as $user) {
+
+            if($_POST['user']===$user['user_name']) {
+                $error = "this username has already been taken";
+                $flag=1;
+                throw new Exception(' username has already been taken');
+                break;
+
+            } elseif($_POST['user_email']===$user['email']) {
+                $error = "this email has already been taken";
+                $flag=1;
+                throw new Exception(' email has already been taken');
+                break;
+            }
+        }
+    } catch(Exception $e) {
+        $exc=$e->getMessage();
+        $date = date('d.m.Y h:i:s');
+        $log = $exc."   |  Date:  ".$date."\n";
+        error_log("$log", 3, "../../assets/log-files/log.log");
+    }
+    if($flag==0) {
                 $values = [
                     "name" => $_POST['user_name'],
                     "email" => $_POST['user_email'],
@@ -98,7 +126,7 @@
                   ];
                  $db_users->update($values,$id); 
 
-            }
+            }}}
             elseif($_POST["action"]==="search"){
                 $search_name = $_POST['search_name'];
                 $search=true;
