@@ -81,8 +81,6 @@
             "group_id" => $_POST['user_group_name'],
         ];
         $db_users->save($values);
-        // $data = json_decode(file_get_contents('php://input'), true);
-        // $db_users->save($data);
     }
 }
             }
@@ -134,20 +132,10 @@
             elseif($_POST["action"]==="filter"){
                 $selected_group = intval($_POST['selected_group']);
                 $search=true;
-            }
-           
+            }  
         }
-        // $db_groups = new MySQLHandler("groups");
-        
-       
-        }
-
-        
-
+        }   
     }
-
     else{
         die("Something went wrong please come back later");
     }
-    
-    

@@ -1,4 +1,5 @@
 <?php
+    if(!isset($_SESSION['user_name'])==true) {
 require_once ('views/main/head.php');
 ?>
 <div class="container d-flex flex-column justify-content-end w-50 p-1">
@@ -22,6 +23,10 @@ require_once ('views/main/head.php');
     </form>
     </div>
 </div>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
 <?php 
-require_once ('views/main/footer.php'); ?>
+require_once ('views/main/footer.php'); 
+} else {
+    header("Location: views/login/profile.php");
+    exit();
+}
+?>

@@ -1,7 +1,4 @@
 <?php
-// require_once("./config.php");
-// require_once("../../models/DbHandler.php");
-// require_once("../../models/MySQLHandler.php");
 require_once("../../vendor/autoload.php");
 
 
@@ -21,19 +18,19 @@ if(isset($_POST['action']) && $_POST['action'] === "create") {
     "icon" => $_POST['icon'],
   ];
   if($_POST['name'] === '') {
-    throw new Exception('Empty Group Name Field');
+    throw new Exception(__CREATE__EMPTY__GROUP__NAME__EXCEPTION__);
     }
 
   if($_POST['description'] === '') {
-    throw new Exception('Empty Group description Field');
+    throw new Exception(__CREATE__EMPTY__GROUP__DESCRIPTION__EXCEPTION__);
     }
 
     if($_POST['icon'] === '') {
-      throw new Exception('Empty Group icon Field');
+      throw new Exception(__CREATE__EMPTY__GROUP__ICON__EXCEPTION__);
       }
 
       if(count($groupsDB->search("name", $_POST['name'])) > 0) {
-        throw new Exception('Inserted a taken group name');
+        throw new Exception(__CREATE__TAKEN__GROUP__NAME__EXCEPTION__);
       }
 
   $groupsDB->save($values);
@@ -57,15 +54,15 @@ if(isset($_POST['action']) && $_POST['action'] === "update") {
   ];
 
   if($_POST['name'] === '') {
-    throw new Exception('Empty Group Name Field');
+    throw new Exception(__EDIT__EMPTY__GROUP__NAME__EXCEPTION__);
     }
 
   if($_POST['description'] === '') {
-    throw new Exception('Empty Group description Field');
+    throw new Exception(__EDIT__EMPTY__GROUP__DESCRIPTION__EXCEPTION__);
     }
 
     if($_POST['icon'] === '') {
-      throw new Exception('Empty Group icon Field');
+      throw new Exception(__EDIT__EMPTY__GROUP__ICON__EXCEPTION__);
       }
 
   $groupsDB->update($values, $_POST['id']);
@@ -82,7 +79,7 @@ catch(Exception $e){
 if(isset($_GET['group_search'])){
   try {
     if($_GET['group_search'] === '') {
-    throw new Exception('group search with empty field');
+    throw new Exception(EMPTY__GROUP__SEARCH__FIELD__EXCEPTION__);
     }
   
   
@@ -101,7 +98,7 @@ if(isset($_GET['group_search'])){
 
   $groups = $arrOfProducts;
   if(count($arrOfProducts) == 0) {
-    throw new Exception('group search not found');
+    throw new Exception(NOT__FOUND__GROUP__SEARCH__EXCEPTION__);
   }
 
   $handler -> close();
@@ -120,7 +117,7 @@ if(isset($_GET['group_delete'])){
     $index=isset($_GET["group_delete"])?$_GET["group_delete"]:"";
     $allGroups=$groupsDB->get_all_records();
   if($index>sizeof($allGroups)) {
-    throw new Exception('Delete undefined group id');
+    throw new Exception(UNDEFINED__GROUP__DELETE__ID__EXCEPTION__);
   }
   $groupsDB->delete($allGroups[$_GET['group_delete']]['id']);
   header("Refresh:0; url=groups.php");
@@ -138,7 +135,7 @@ if(isset($_GET['group_edit'])){
   $index=isset($_GET['group_edit'])?$_GET['group_edit']:"";
   $allGroups=$groupsDB->get_all_records();
   if($index>sizeof($allGroups[0])) {
-    throw new Exception('Edit undefined group id');
+    throw new Exception(UNDEFINED__GROUP__EDIT__ID__EXCEPTION__);
   }
   }
   catch(Exception $e){

@@ -1,12 +1,11 @@
 <?php 
 session_start();
-if(isset($_SESSION['user_name'])){
-require('../main/head.php'); 
- require('../main/sidebar.php');
- require_once('../../controllers/home.php');
- ?>
-
-
+try {
+    if(isset($_SESSION['user_name'])) {
+        require('../main/head.php');
+        require('../main/sidebar.php');
+        require_once('../../controllers/home.php');
+        ?>
     <div class="content-wrapper m-5">
         <div class="content-header">
             <div class="container-fluid">
@@ -54,8 +53,14 @@ chart.render();
 </script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-<?php require('../main/footer.php'); 
-}else{
-    header("Location: ../../");
-    exit();
-} ?>        
+<?php require('../main/footer.php');
+    } else {
+        header("Location: ../../");
+        throw new Exception('unauthorized access');
+    }
+}catch(Exception $e){
+    $exc=$e->getMessage();
+    $date = date('d.m.Y h:i:s');
+    $log = $exc."   |  Date:  ".$date."\n";
+    error_log("$log",3, "../../assets/log-files/log.log");
+  } ?>        

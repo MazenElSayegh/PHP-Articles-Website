@@ -71,5 +71,17 @@ accessing articles for unauthorized user   |  Date:  19.04.2023 03:03:38
 Unknown column 'is_deleted' in 'field list'   |  Date:  19.04.2023 04:07:37
  username has already been taken   |  Date:  19.04.2023 04:12:04
  username has already been taken   |  Date:  19.04.2023 04:16:56
+<<<<<<< HEAD
 No such user in database   |  Date:  19.04.2023 04:43:06
  username has already been taken   |  Date:  19.04.2023 04:45:20
+=======
+No such user in database   |  Date:  19.04.2023 04:28:59
+accessing articles for unauthorized user   |  Date:  19.04.2023 04:31:53
+accessing articles for unauthorized user   |  Date:  19.04.2023 04:33:44
+accessing articles for unauthorized user   |  Date:  19.04.2023 04:36:09
+accessing users for unauthorized user   |  Date:  19.04.2023 04:43:37
+User didn't write username   |  Date:  21.04.2023 06:39:29
+User didn't write username   |  Date:  21.04.2023 06:39:38
+No such user in database   |  Date:  21.04.2023 06:40:08
+ email has already been taken   |  Date:  21.04.2023 09:15:29
+>>>>>>> 835f13cad7ecf1f264f1caa60e62891af1c97795
