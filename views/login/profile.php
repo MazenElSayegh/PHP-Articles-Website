@@ -18,8 +18,8 @@ try {
                 <li class="list-group-item">Email: <?php echo $_SESSION['email']; ?></li>
                 <li class="list-group-item">Mobile: <?php echo $_SESSION['mobile']; ?></li>
                 <li class="list-group-item">Group: <?php echo $_SESSION['group']; ?></li>
-                <li class="list-group-item">Subscription date: <?php echo $_SESSION['subscription_date']; ?></li>
-                <li class="list-group-item">Last login: <?php echo date('h:i l d-M-y',strtotime($_SESSION['last_login']) ) ; ?></li>
+                <li class="list-group-item">Subscription date: <?php echo date('d-M-Y',strtotime($_SESSION['subscription_date'])) ;?></li>
+                <li class="list-group-item">Last login: <?php echo date('h:i l d-M-Y',strtotime($_SESSION['last_login'])) ; ?></li>
             </ul>
         </div>
         <a href="../../controllers/logout.php" class="btn btn-warning mt-3 border border-dark rounded-pill">Logout</a>
