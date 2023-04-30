@@ -40,7 +40,7 @@ catch(Exception $e){
   $exc=$e->getMessage();
   $date = date('d.m.Y h:i:s');
   $log = $exc."   |  Date:  ".$date."\n";
-  error_log("$log", 3, "../../assets/log-files/log.log");
+  error_log("$log", 3, "../../assets/log-files/log.php");
 }
 }
 
@@ -72,7 +72,7 @@ catch(Exception $e){
   $exc=$e->getMessage();
   $date = date('d.m.Y h:i:s');
   $log = $exc."   |  Date:  ".$date."\n";
-  error_log("$log", 3, "../../assets/log-files/log.log");
+  error_log("$log", 3, "../../assets/log-files/log.php");
 }
 }
 
@@ -107,7 +107,7 @@ if(isset($_GET['group_search'])){
     $exc=$e->getMessage();
     $date = date('d.m.Y h:i:s');
     $log = $exc."   |  Date:  ".$date."\n";
-    error_log("$log", 3, "../../assets/log-files/log.log");
+    error_log("$log", 3, "../../assets/log-files/log.php");
   }
 }
 
@@ -131,7 +131,7 @@ if(isset($_GET['group_delete'])){
     $exc=$e->getMessage();
     $date = date('d.m.Y h:i:s');
     $log = $exc."   |  Date:  ".$date."\n";
-    error_log("$log", 3, "../../assets/log-files/log.log");
+    error_log("$log", 3, "../../assets/log-files/log.php");
   }
 }
 
@@ -147,7 +147,7 @@ if(isset($_GET['group_edit'])){
     $exc=$e->getMessage();
     $date = date('d.m.Y h:i:s');
     $log = $exc."   |  Date:  ".$date."\n";
-    error_log("$log", 3, "../../assets/log-files/log.log");
+    error_log("$log", 3, "../../assets/log-files/log.php");
   }
 }
 ?>

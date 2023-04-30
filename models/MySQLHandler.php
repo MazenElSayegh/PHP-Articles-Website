@@ -79,10 +79,10 @@ class MySQLHandler implements DbHandler {
             while ($row = mysqli_fetch_array($_handler_results, MYSQLI_ASSOC)) {
                 $_arr_results[] = array_change_key_case($row);
             }
-           // $this->disconnect();
+          
             return $_arr_results;
         } else {
-            //$this->disconnect();
+            
             return false;
         }
     }
@@ -113,10 +113,10 @@ class MySQLHandler implements DbHandler {
 
         
             if (mysqli_query($this->_db_handler, $sql)) {
-               // $this->disconnect();
+              
                 return true;
             } else {
-                //$this->disconnect();
+               
                 return false;
             }
         }
@@ -158,17 +158,6 @@ class MySQLHandler implements DbHandler {
         $sql = "select * from `$table` where `$primary_key` = '$id' ";
 
         $this->update(['is_deleted'=>1], $id);
-        //var_dump( $record_to_be_softDeleted);
-       /* $table = $this->_table;
-        $primary_key = $this->_primary_key;
-        $sql = "delete  from `" . $table . "` where `" . $primary_key . "` = $id";
-        $this->debug($sql);
-        if (mysqli_query($this->_db_handler, $sql)) {
-            return true;
-        } else {
-            $this->disconnect();
-            return false;
-        }*/
     }
 
     private function debug($sql) {
