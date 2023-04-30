@@ -1,9 +1,10 @@
 <?php
 session_start();
-if(isset($_SESSION['user_name'])){
+try {
+    if(isset($_SESSION['user_name'])) {
 
-require_once ('../main/head.php');
-require_once ('../main/sidebar.php');
+        require_once('../main/head.php');
+        require_once('../main/sidebar.php');
 ?>
 
 <div class="container m-5">
@@ -17,7 +18,8 @@ require_once ('../main/sidebar.php');
                 <li class="list-group-item">Email: <?php echo $_SESSION['email']; ?></li>
                 <li class="list-group-item">Mobile: <?php echo $_SESSION['mobile']; ?></li>
                 <li class="list-group-item">Group: <?php echo $_SESSION['group']; ?></li>
-                <li class="list-group-item">Subscription date: <?php echo $_SESSION['subscription_date']; ?></li>
+                <li class="list-group-item">Subscription date: <?php echo date('d-M-Y',strtotime($_SESSION['subscription_date'])) ;?></li>
+                <li class="list-group-item">Last login: <?php echo date('h:i l d-M-Y',strtotime($_SESSION['last_login'])) ; ?></li>
             </ul>
         </div>
         <a href="../../controllers/logout.php" class="btn btn-warning mt-3 border border-dark rounded-pill">Logout</a>
@@ -25,9 +27,16 @@ require_once ('../main/sidebar.php');
 </div>
 
 
-<?php 
-require_once ('../main/footer.php');
-}else{
-    header("Location: ../../");
-    exit();
-} ?>
+<?php
+        require_once('../main/footer.php');
+    } else {
+        header("Location: ../../");
+        throw new Exception('unauthorized access for profile page');
+    }
+} catch(Exception $e){
+    $exc=$e->getMessage();
+    $date = date('d.m.Y h:i:s');
+    $log = $exc."   |  Date:  ".$date."\n";
+    error_log("$log",3, "../../assets/log-files/log.log");
+  }
+?>

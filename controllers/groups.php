@@ -1,7 +1,4 @@
 <?php
-// require_once("./config.php");
-// require_once("../../models/DbHandler.php");
-// require_once("../../models/MySQLHandler.php");
 require_once("../../vendor/autoload.php");
 
 
@@ -116,6 +113,7 @@ if(isset($_GET['group_search'])){
 
 
 if(isset($_GET['group_delete'])){
+  $db_users = new MySQLHandler("users");
   try {
     $index=isset($_GET["group_delete"])?$_GET["group_delete"]:"";
     $allGroups=$groupsDB->get_all_records();
@@ -123,6 +121,10 @@ if(isset($_GET['group_delete'])){
     throw new Exception('Delete undefined group id');
   }
   $groupsDB->delete($allGroups[$_GET['group_delete']]['id']);
+  $users_in_group=$db_users->search('group_id', $allGroups[$_GET['group_delete']]['id']);
+  foreach ($users_in_group as $user){
+    $db_users->delete($user['id']);
+  }
   header("Refresh:0; url=groups.php");
   }
   catch(Exception $e){

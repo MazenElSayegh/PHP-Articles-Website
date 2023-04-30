@@ -1,4 +1,11 @@
 <?php
+session_start();
+try{
+if(!isset($_SESSION['user_name'])){
+  header("Location: ../../");
+  throw new Exception('unauthorized access for article');
+}else{
+  if($_SESSION['group']=='Admins'||$_SESSION['group']=='Editors'){
 require_once ('../main/head.php');
 require_once ('../main/sidebar.php');
 require("../../vendor/autoload.php");
@@ -39,4 +46,17 @@ require_once("../../controllers/articles.php");
 
 
 <?php
-    require_once ('../main/footer.php'); ?>
+    require_once ('../main/footer.php'); 
+  }
+  else{
+    header("Location: ../login/profile.php");
+    throw new Exception('unauthorized access for article');
+  }
+}
+}catch(Exception $e){
+  $exc=$e->getMessage();
+  $date = date('d.m.Y h:i:s');
+  $log = $exc."   |  Date:  ".$date."\n";
+  error_log("$log",3, "../../assets/log-files/log.log");
+}?>
+?>

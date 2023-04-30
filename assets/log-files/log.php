@@ -1,3 +1,17 @@
+<?php
+    /* at the top of 'check.php' */
+    if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
+        /* 
+           Up to you which header to send, some prefer 404 even if 
+           the files does exist for security
+        */
+        header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
+
+        /* choose the appropriate page to redirect users */
+        die( header( 'location: /php-articles-website/index.php' ) );
+
+    }
+?>
 You messed up!Oh no!
 .().
 .(()).
@@ -71,11 +85,23 @@ accessing articles for unauthorized user   |  Date:  19.04.2023 03:03:38
 Unknown column 'is_deleted' in 'field list'   |  Date:  19.04.2023 04:07:37
  username has already been taken   |  Date:  19.04.2023 04:12:04
  username has already been taken   |  Date:  19.04.2023 04:16:56
+No such user in database   |  Date:  19.04.2023 04:43:06
+ username has already been taken   |  Date:  19.04.2023 04:45:20
 No such user in database   |  Date:  19.04.2023 04:28:59
 accessing articles for unauthorized user   |  Date:  19.04.2023 04:31:53
 accessing articles for unauthorized user   |  Date:  19.04.2023 04:33:44
 accessing articles for unauthorized user   |  Date:  19.04.2023 04:36:09
 accessing users for unauthorized user   |  Date:  19.04.2023 04:43:37
-accessing articles for unauthorized user   |  Date:  19.04.2023 05:12:54
-No such user in database   |  Date:  30.04.2023 01:24:30
-No such user in database   |  Date:  30.04.2023 01:24:39
+User didn't write username   |  Date:  21.04.2023 06:39:29
+User didn't write username   |  Date:  21.04.2023 06:39:38
+No such user in database   |  Date:  21.04.2023 06:40:08
+ email has already been taken   |  Date:  21.04.2023 09:15:29
+unauthorized access for articles   |  Date:  26.04.2023 05:47:16
+Unknown database 'adminpanel'   |  Date:  30.04.2023 01:45:02
+Unknown database 'adminpanel'   |  Date:  30.04.2023 01:45:21
+Unknown database 'adminpanel'   |  Date:  30.04.2023 01:45:29
+Unknown database 'adminpanel'   |  Date:  30.04.2023 01:46:22
+Unknown database 'adminpanel'   |  Date:  30.04.2023 01:46:41
+Unknown database 'adminpanel'   |  Date:  30.04.2023 01:47:11
+Unknown database 'adminpanel'   |  Date:  30.04.2023 01:47:33
+Unknown database 'adminpanel'   |  Date:  30.04.2023 01:47:39
