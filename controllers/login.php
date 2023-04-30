@@ -21,7 +21,7 @@ try {
                 $users_db= new MySQLHandler('users');
                 $sql= "SELECT * FROM users WHERE user_name= '$uname' AND password='$pass'";
                 $user=$users_db->get_results($sql);
-                if(!isset($user[0])){
+                if(!isset($user[0]) || $user[0]['is_deleted']==1){
                     header("Location: ../?error=Incorrect username or password");
                     throw new Exception("No such user in database");
                 }else{
