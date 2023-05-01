@@ -19,11 +19,17 @@ try {
                 throw new Exception("User didn't write password");
             } else {
                 $users_db= new MySQLHandler('users');
-                $sql= "SELECT * FROM users WHERE user_name= '$uname' AND password='$pass'";
+                $sql= "SELECT * FROM users WHERE user_name= '$uname'";
                 $user=$users_db->get_results($sql);
+                if(isset($user[0])){
+                    $hashed_password=$user[0]['password'];
+                }
                 if(!isset($user[0]) || $user[0]['is_deleted']==1){
-                    header("Location: ../?error=Incorrect username or password");
+                    header("Location: ../?error=Incorrect username");
                     throw new Exception("No such user in database");
+                }elseif (!password_verify($pass, $hashed_password)){ 
+                    header("Location: ../?error=Incorrect password");
+                    throw new Exception("Incorrect password in database");
                 }else{
                     $id = $user[0]['id'];
                     $last_login=$user[0]['last_login'];
