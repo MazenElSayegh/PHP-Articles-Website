@@ -62,5 +62,5 @@ chart.render();
     $exc=$e->getMessage();
     $date = date('d.m.Y h:i:s');
     $log = $exc."   |  Date:  ".$date."\n";
-    error_log("$log",3, "../../assets/log-files/log.log");
+    error_log("$log",3, "../../assets/log-files/log.php");
   } ?>        

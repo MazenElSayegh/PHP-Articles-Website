@@ -67,17 +67,16 @@
         $exc=$e->getMessage();
         $date = date('d.m.Y h:i:s');
         $log = $exc."   |  Date:  ".$date."\n";
-        error_log("$log", 3, "../../assets/log-files/log.log");
+        error_log("$log", 3, "../../assets/log-files/log.php");
     }
 
-        // var_dump($flag);
     if($flag==0) {
         $values = [
             "name" => $_POST['user_name'],
             "email" => $_POST['user_email'],
             "mobile" => $_POST['user_phone'],
             "user_name" => $_POST['user'],
-            "password" => $_POST['user_password'],
+            "password" => password_hash($_POST['user_password'],PASSWORD_DEFAULT),
             "group_id" => $_POST['user_group_name'],
         ];
         $db_users->save($values);
@@ -111,7 +110,7 @@
         $exc=$e->getMessage();
         $date = date('d.m.Y h:i:s');
         $log = $exc."   |  Date:  ".$date."\n";
-        error_log("$log", 3, "../../assets/log-files/log.log");
+        error_log("$log", 3, "../../assets/log-files/log.php");
     }
     if($flag==0) {
                 $values = [
@@ -119,7 +118,7 @@
                     "email" => $_POST['user_email'],
                     "mobile" => $_POST['user_phone'],
                     "user_name" => $_POST['user'],
-                    "password" => $_POST['user_password'],
+                    "password" => password_hash($_POST['user_password'],PASSWORD_DEFAULT),
                     "group_id" => $_POST['user_group_name'],
                   ];
                  $db_users->update($values,$id); 
