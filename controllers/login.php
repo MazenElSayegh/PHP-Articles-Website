@@ -27,10 +27,12 @@ try {
                 if(!isset($user[0]) || $user[0]['is_deleted']==1){
                     header("Location: ../?error=Incorrect username");
                     throw new Exception("No such user in database");
-                }elseif (!password_verify($pass, $hashed_password)){ 
+                }
+                elseif ($pass!=$hashed_password && !password_verify($pass, $hashed_password)){ 
                     header("Location: ../?error=Incorrect password");
                     throw new Exception("Incorrect password in database");
-                }else{
+                }
+                else{
                     $id = $user[0]['id'];
                     $last_login=$user[0]['last_login'];
                     date_default_timezone_set('Africa/Cairo');
