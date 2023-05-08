@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 try{
 if(!isset($_SESSION['user_name'])){
   header("Location: ../../");
@@ -10,6 +10,7 @@ require_once ('../main/head.php');
 require_once ('../main/sidebar.php');
 require("../../vendor/autoload.php");
 require_once("../../controllers/articles.php");
+
 ?>
 
   <div class="wrapper">
@@ -59,4 +60,3 @@ require_once("../../controllers/articles.php");
   $log = $exc."   |  Date:  ".$date."\n";
   error_log("$log",3, "../../assets/log-files/log.php");
 }?>
-?>

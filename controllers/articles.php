@@ -5,6 +5,7 @@ try{
 $articles_table=new MySQLHandler("articles");
 if(isset($_GET["article_id"]) && is_numeric($_GET["article_id"])){
   require_once("./single.php");
+  die();
 }
 
 $current_index=isset($_GET["article_current"]) && is_numeric($_GET["article_current"])?$_GET["article_current"]:0;
